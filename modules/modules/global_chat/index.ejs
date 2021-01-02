@@ -1,0 +1,121 @@
+	<% var user=user; var designFolder=theme%>
+	<%- include ../../../views/parts/header %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <%- include ../../../views/parts/importDesign %>
+    <div class="body">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/modulesCSS/global_chat.css">
+    <style>
+		.row{
+			padding-bottom: 4rem;
+		}	
+	</style>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12">
+                <h1 class="schrift">
+                    Global-Chat 
+					
+                    <button id="clear" class="btn btn-danger">Clear</button>
+                </h1>
+                <div id="chat">
+                   <h3 id = "test"><%=name%></h3>
+                    <br>
+                    <div class="card">
+                        <div id="messages" class="card-block"  style="overflow:scroll">
+
+                        </div>
+                    </div>
+                    <br>
+                    <textarea id="textarea" class="form-control" placeholder="Enter message...">
+					</textarea>
+                </div>
+            </div>
+        </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+</script>
+<script>
+		textarea.value = '';
+        (function init(){
+            
+            var element = function(id){
+                return document.getElementById(id);
+            }
+
+            // Get Elements
+            var messages = element('messages');
+            var textarea = element('textarea');
+            var username = element('username');
+            var clearBtn = element('clear');
+			var send = element('send');
+
+            // Connect to socket.io
+            var socket = io.connect('http://<%=paths.url%>:9167');
+
+            // Check for connection
+            if(socket !== undefined){
+               // console.log('Connected to socket...');
+				//console.log(socket);
+
+                // Handle Output
+                socket.on('GLOBALCHAT_output', function(data){
+                    //console.log(data);
+                   	var e = document.getElementById("test");
+					var name = e.innerHTML;
+                    if(data.length){
+                        for(var x = 0;x < data.length;x++){
+							if(data[x].name == name){
+							var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+							var p = document.createElement('p');
+							p.setAttribute('class', 'mymsg');
+                            p.textContent = data[x].name+": "+data[x].message;
+							messages.appendChild(message);
+                            messages.insertBefore(message, messages.firstChild);
+							message.appendChild(p);
+								}else{
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+							var p = document.createElement('p');
+							p.setAttribute('class', 'chat-text');
+                            p.textContent = data[x].name+": "+data[x].message;
+							messages.appendChild(message);
+                            messages.insertBefore(message, messages.firstChild);
+							message.appendChild(p);
+							}
+                        }
+                    }
+                });
+
+                
+                // Handle Input
+                textarea.addEventListener('keydown', function(event){
+                    if(event.which === 13 && event.shiftKey == false){
+                        // Emit to server input
+						var e = document.getElementById("test");
+						var name = e.innerHTML;
+                        socket.emit('GLOBALCHAT_input', {
+                            name: name,
+                            message:textarea.value
+                        });
+
+                        event.preventDefault();
+						textarea.value = '';
+                    }
+                })
+				
+                
+
+                // Handle Chat Clear
+                clearBtn.addEventListener('click', function(){
+                    
+					messages.textContent = '';
+                });
+
+            }
+
+        })();
+    </script>
+<%- include ../../../views/parts/footer %>

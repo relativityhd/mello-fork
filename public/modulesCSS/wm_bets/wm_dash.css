@@ -1,0 +1,145 @@
+:root {
+  --WM_textColor: #edd;
+  --WM_borderColor: #eb6;
+  --WM_backColor: #46e;
+  --WM_backColor-2: #138;
+  --WM_textColor-2: #d35c5c;
+}
+
+.WM_select {
+  width: 20%;
+  height: 30px;
+  padding-left: 10px;
+  border: solid 1px var(--WM_borderColor);
+  color: var(--WM_textColor);
+  background-color: transparent;
+  font-size: 16px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.WM_select:focus::-ms-value {
+  background-color: transparent;
+}
+
+.WM_select option {
+  color: #666;
+}
+
+.WM_body {
+  margin: 2%;
+  padding: 2%;
+  background-image: url(FIFAbackground.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 50%;
+  border-radius: 5px;
+  border-bottom-right-radius: 200px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
+}
+
+.WM_table {
+  font-family: "Lucida Sans Unicode";
+  font-size: 12px;
+  color: var(--WM_textColor) !important;
+  border-collapse: collapse;
+}
+
+.WM_tipTable {
+  display: inline-block;
+  padding: 2%;
+  margin: 1%;
+  border: solid 4px;
+  border-color: var(--WM_borderColor);
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-image: linear-gradient(
+    10deg,
+    var(--WM_backColor-2) 15%,
+    var(--WM_backColor) 85%
+  );
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.WM_text {
+  color: var(--WM_textColor);
+}
+
+.WM_headline {
+  color: var(--WM_borderColor) !important;
+  padding-bottom: 0%;
+  padding-top: 0%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  font-size: 45px;
+}
+
+.WM_tableLeft {
+  text-align: left;
+  padding: 3px;
+  color: var(--WM_textColor) !important;
+}
+
+.WM_tableRight {
+  text-align: right;
+  padding: 3px;
+  color: var(--WM_textColor) !important;
+}
+
+.WM_tableTipLeft {
+  text-align: left;
+  padding: 3px;
+  color: var(--WM_textColor-2) !important;
+}
+
+.WM_tableTipRight {
+  text-align: right;
+  padding: 3px;
+  color: var(--WM_textColor-2) !important;
+}
+
+.WM_tableHeadLeft {
+  text-align: left;
+  border-bottom: solid 1px var(--WM_borderColor) !important;
+  color: var(--WM_borderColor) !important;
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.WM_tableHeadRight {
+  text-align: right;
+  border-bottom: solid 1px var(--WM_borderColor) !important;
+  color: var(--WM_borderColor) !important;
+  padding: 3px;
+  margin-left: 10px;
+}
+
+.WM_tableHead {
+  font-size: 13px;
+  font-variant: small-caps;
+  color: var(--borderColor) !important;
+  border-bottom: solid 1px var(--WM_borderColor) !important;
+}
+
+.WM_pictureDIV {
+  height: 10px;
+  width: 20px;
+}
+
+.WM_picture {
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  vertical-align: top;
+}

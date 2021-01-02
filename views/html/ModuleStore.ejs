@@ -1,0 +1,48 @@
+<% var user=user; var title="Module Store"; var designFolder=theme%>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+    
+    <link rel="stylesheet"  href="../themes/standart/css/module.css">
+    <link rel="stylesheet"  href="../themes/<%= typeof designFolder != 'undefined' ? designFolder : 'standart' %>/css/module.css">
+    <link rel="stylesheet"  href="../themes/standart/css/W3.css">
+    <link rel="stylesheet"  href="../themes/<%= typeof designFolder != 'undefined' ? designFolder : 'standart' %>/css/W3.css">
+            <div class="MELLO_body">
+                <h3>Available modules</h3>
+                <p>Simply select modules and click on subscribe!</p>
+                <form action="<%= paths.Modules.addModule %>" method="post">
+                <% if (storeModules.length==0) { %>
+                    <h2>You have already subscribed to all modules</h2>
+                <%}%>
+                <% storeModules.forEach(function(module){ %>
+                    <!-- !!! Wichtig !!! Aufgrund des Scriptes könnten (EIGENTLICH GARANTIERT) hier Bugs auftreten! -->
+                    <div class="MELLO_storeModule" name="<%= module[1] %>">
+                        <label class="W3container"><%= module[0] %>
+                            <input type="checkbox" name="<%= module[1] %>">
+                            <span class="W3checkmark"></span>
+                        </label>
+                        <p><%= infos[module[0]] %></p>
+                    </div>
+                <% }); %>
+                    <button class="MELLO_storeSubmit">subscribe</button>
+                </form>
+                <hr>
+                <h3>Your modules</h3>
+                <p>If you want to de-subscribe a module, simply select it and click on de-subscribe!</p>
+                <form action="<%= paths.Modules.removeModule %>" method="post">
+                <% if (userModules.length==0) { %>
+                    <h2>You have not yet subscribed to any modules</h2>
+                <%}%>
+                <% userModules.forEach(function(module){ %>
+                    <!-- !!! Wichtig !!! Aufgrund des Scriptes könnten (EIGENTLICH GARANTIERT) hier Bugs auftreten! -->
+                    <div class="MELLO_storePossessModule" name="<%= module[1] %>">
+                        <label class="W3container"><%= module[0] %>
+                            <input type="checkbox" name="<%= module[1] %>">
+                            <span class="W3checkmark_red"></span>
+                        </label>
+                        <p><%= infos[module[0]] %></p>
+                    </div>
+                <% }); %>
+                    <button class="MELLO_storeSubmit">de-subscribe</button>
+                </form>
+            </div>
+<%- include ../parts/footer %>

@@ -1,0 +1,154 @@
+<% var user=isAuth;  var title= searchedUser.username; var designFolder=searchedUser.design_theme%>
+<%- include ../parts/header %>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet"  href="/themes/standart/css/profile.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%- include ../parts/importDesign %>
+<div class="PROFILE_body">
+    
+    
+    <div class="PROFILE_bannerWrapper">
+        
+        <div class="PROFILE_banner">
+            <% if (banner) {%>
+            <img class="PROFILE_bannerImage" src="/profile/picture/<%= banner.filename %>" draggable="false">
+            <%}%>
+        </div>
+        
+        <div class="PROFILE_infoWrapper">
+            <p class="PROFILE_username"><%= searchedUser.username %></p>
+            <p class="PROFILE_name"><%= searchedUser.firstname %></p>
+            <p class="PROFILE_name"><%= searchedUser.secondname %></p>
+            <p class="PROFILE_name"><%= searchedUser.lastname %></p>
+            <div class="PROFILE_infoIcon">
+                <i class="material-icons md-36">info</i>
+                <div class="PROFILE_infosWrapper">
+                    <div class="PROFILE_infosBIO">
+                        <p class="PROFILE_infosLabel">biography:</p>
+                        <% if(searchedUser.biography) {%>
+                            <p class="PROFILE_infos"><%= searchedUser.biography %></p>
+                        <%}else{%>
+                            <h2 class="PROFILE_infos">This User has no Biography</h2>
+                        <%} %>
+                    </div><br>
+                    <p class="PROFILE_infosLabel">birthday: </p>
+                    <% if(searchedUser.birthday) {%>
+                        <p class="PROFILE_infos"><%= searchedUser.birthday %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">sex: </p>
+                    <% if(searchedUser.sex) {%>
+                        <p class="PROFILE_infos"><%= searchedUser.sex %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">email: </p>
+                    <% if(searchedUser.email) {%>
+                        <p class="PROFILE_infos"><%= searchedUser.email %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">tel.: </p>
+                    <% if(searchedUser.tel) {%>
+                        <p class="PROFILE_infos"><%= searchedUser.tel %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">mobile: </p>
+                    <% if(searchedUser.mob) {%>
+                        <p class="PROFILE_infos"><%= searchedUser.mob %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                </div>
+            </div>
+        </div>
+        
+        <div class="PROFILE_pictureWrapper">
+            <div class="PROFILE_picture">
+                <div class="PROFILE_LabelPicture" id="fileSelect">
+                    <img class="PROFILE_pictureImage" src="/profile/picture/<%= profilepic.filename %>" draggable="false">
+                </div>
+            </div>
+        </div>
+        
+        <% if (thisUser._id==searchedUser._id) { %>
+            <form class="PROFILE_addFriendWrapper" action="<%= paths.profilesite %>" method="get">
+                <button class="PROFILE_addFriendButton">
+                    <label class="PROFILE_toEditProfile">
+                        <i class="material-icons md-36">edit</i>Edit your Profile
+                    </label>
+                </button>
+            </form>
+        <% }else if (thisUser.friends.includes(searchedUser._id.toString())) { %>
+            <div class="PROFILE_addFriendWrapper">
+                <label class="PROFILE_requestSend">
+                    your are friends<i class="material-icons md-36">check</i>
+                </label>
+            </div>
+        <% }else if (thisUser.friends_requests.includes(searchedUser._id.toString())){ %>
+            <form class="PROFILE_addFriendWrapper" action="<%= paths.profilesite %>/accept_friendship/<%= searchedUser._id %>" method="post">
+                <button class="PROFILE_addFriendButton">
+                    <label class="PROFILE_addToFriends">
+                        <i class="material-icons md-36">add</i>accept request
+                    </label>
+                </button>
+            </form>
+        <% }else if(thisUser.friends_inquiries.includes(searchedUser._id.toString())){ %>
+            <div class="PROFILE_addFriendWrapper">
+                <label class="PROFILE_requestSend">
+                    friend request send<i class="material-icons md-36">check</i>
+                </label>
+            </div>
+        <% }else{ %>
+            <form class="PROFILE_addFriendWrapper" action="<%= paths.profilesite %>/request_friendship/<%= searchedUser._id %>" method="post">
+                <button class="PROFILE_addFriendButton">
+                    <label class="PROFILE_addToFriends">
+                        <i class="material-icons md-36">add</i>add friend
+                    </label>
+                </button>
+            </form>
+        <% } %>
+    </div>
+    
+    
+    <div class="PROFILE_gallery">
+        <% if (gallery.length) {%>
+        <% gallery.forEach(function(picture){%>
+            <div class="PROFILE_galleryPictureWrapper">
+                <img class="PROFILE_galleryPicture" src="/profile/picture/<%= picture.filename %>" draggable="false">
+            </div>
+        <%})%>
+        <%}else{ %>
+            <h2>This user has not uploaded pictures yet.</h2>
+        <%}%>
+    </div>
+    <div class="PROFILE_friends">
+        <h3>Friends</h3>
+        <% if (searchedUser.friends.length==0) {%>
+            <h2>This User has no friends. Be his/her first one!</h2>
+        <%}%>
+        <% searchedUser.friends.forEach(function(friend){ %>
+            <div class="PROFILE_userWrapper">
+                <form class="PROFILE_formWrapper" action="<%= paths.profilesite %>/<%= friend.username %>" method="get">
+                    <button class="PROFILE_pseudoButton">
+                        <% if (friendspics[friend._id]) { %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/<%= friend._id %>" draggable="false">
+                        <% }else{ %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/standardAvatar" draggable="false">
+                        <% } %>
+                        <div class="PROFILE_userInfoWrapper">
+                            <p class="PROFILE_userUsername"><%= friend.username %></p>
+                            <p class="PROFILE_userName"><%= friend.firstname %> <%= friend.secondname %> <%= friend.lastname %></p>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<br>
+<br>
+<%- include ../parts/footer %>

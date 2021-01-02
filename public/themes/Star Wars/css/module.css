@@ -1,0 +1,10 @@
+.MELLO_linkModule {
+  border-top-color: #d9a602;
+}
+.MELLO_linkModule:hover {
+  border-top-color: #d9a602 !important;
+}
+.MELLO_storeModule:hover,
+.MELLO_storePossessModule:hover {
+  border-color: #d9a602;
+}

@@ -1,0 +1,135 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What's the weather like?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+	<link rel="stylesheet"  href="../modulesCSS/Wetter.css">
+	</script>
+</head>
+<style>
+	.container {
+    max-width: auto !important;
+    width: auto;
+}
+	#bla{
+		margin-left: 5% !important;
+	}
+	.column.is-4{
+		width: auto !important;
+	}
+	.box{
+		float: left;
+		margin-right: 10%;
+	}
+</style>
+<div class="MELLO_WetterDash">
+	<h1>Weather-App</h1>
+    <p>Here you can see your Weather-Data </p>
+<section class="section" id= "w">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4" id = "bla">
+					 
+					
+<script>
+	
+			if(socket !== undefined){
+		
+				console.log('Connected to socket...');
+				
+			};
+	
+		/*document.getElementById(wat);
+		console.log(wat.innerHTML);
+	    console.log(wat.innerHTML.replace('Hello ', '')) ;
+		var zu = wat.innerHTML.replace('Hello ', '');
+		console.log(zu.replace(', this is your dashboard', '')) ;
+		var name = zu.replace(', this is your dashboard', '');*/
+		var name="<%=name%>";
+	
+		
+		socket.emit('wetteransage',{
+                            name: name
+							
+                        });
+						
+		socket.on('wetter', function(data){
+				   		
+			//console.log(data.weather_data);
+			//console.log(data.weather_data.length);
+			//console.log(data.weather_data[1].temperature)
+			
+						
+			for(var x = 0;x < data.weather_data.length;x++){
+						
+					var e = document.createElement("div");
+					e.setAttribute('class', 'box');
+					var adult = document.getElementById("bla");
+					adult.appendChild(e);
+			
+					var article = document.createElement("article");
+					article.setAttribute('class', 'media');
+					e.appendChild(article);
+			
+					var media_left = document.createElement("div");
+					media_left.setAttribute('class', 'media-left');
+					article.appendChild(media_left);
+			
+					var figure =document.createElement("figure");
+					figure.setAttribute('class', 'image is-50x50'); 
+					media_left.appendChild(figure);
+			
+					var img = document.createElement("img");
+					img.src= ("http://openweathermap.org/img/w/"+ data.weather_data[x].icon+".png");
+					figure.appendChild(img);
+			
+					var media_content = document.createElement("div");
+					media_content.setAttribute('class', 'media-content');
+					article.appendChild(media_content);
+			
+					var content= document.createElement("div");
+					content.setAttribute('class', 'content');
+					media_content.appendChild(content);
+			
+					var p = document.createElement("p");
+					content.appendChild(p);
+			
+					var city = document.createElement("span");
+					city.setAttribute('class', 'title');
+					city.textContent = data.weather_data[x].city;
+					p.appendChild(city);
+			
+					var br = document.createElement("br")
+					p.appendChild(br);
+			
+					var temp = document.createElement("span");
+					temp.setAttribute('class', 'subtitle');
+					temp.textContent = data.weather_data[x].temperature +" °c";
+					p.appendChild(temp);
+			
+					var br2 = document.createElement("br")
+					p.appendChild(br2);
+			
+					var des = document.createElement("span");
+					des.textContent = data.weather_data[x].description ;
+					p.appendChild(des);
+
+						
+					};
+			});
+		
+	
+						
+						 
+					
+					</script>
+					</div>
+                </div>
+            </div>
+        
+    </section>
+</div>
+	
+	

@@ -1,0 +1,10 @@
+.GROUPS_leftside,
+.GROUPS_rightside {
+  display: inline-block;
+  width: 40%;
+  padding: 4%;
+}
+
+.GROUPS_leftside {
+  border-right: solid 1px #ccc;
+}

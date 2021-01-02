@@ -1,0 +1,288 @@
+<link rel="stylesheet"  href="./modulesCSS/wm_bets/wm_dash.css">
+<div class="WM_body">
+	<a class="WM_headline" href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Football-Betting Game</a>
+    <h6 class="WM_text" id="group"></h6>
+    <p class="WM_text" id="points"></p>
+    <br>
+    <label class="WM_text">Select a group</label>
+    <select class="WM_select" id="groupSelecter" onchange="newGroup()"></select><br><br>
+    <label class="WM_text">Select a game filter</label>
+    <select class="WM_select" id="gamesSelecter" onchange="newGames()"></select>
+    <br>
+    <br>
+    <div class="WM_tipTable">
+        <table class="WM_table" id="table">
+            <tr class="WM_tableHead">
+                <th></th>
+                <th class="WM_tableHeadLeft">Team 1</th>
+                <th class="WM_tableHeadLeft">Tip</th>
+                <th class="WM_tableHeadRight">Goals</th>
+                <th> : </th>
+                <th class="WM_tableHeadLeft">Goals</th>
+                <th class="WM_tableHeadRight">Tip</th>
+                <th class="WM_tableHeadRight">Team 2</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+    
+    <script>
+        var name="<%=name%>";
+		
+        // socket wird schon im Dashboard deklariert!
+		socket.emit('requestData',{
+            name: name,
+            sckt: "receiveFirstData"
+        });
+        
+        function newGroup() {
+            socket.emit('requestChangeGroup',{
+                name: name,
+                newGroup: document.getElementById("groupSelecter").value
+            });
+        }
+        function newGames() {
+            socket.emit('requestChangeGames',{
+                name: name,
+                newFilter: document.getElementById("gamesSelecter").value
+            });
+        }
+        
+        socket.on('receiveChange', function(data){
+            socket.emit('requestData',{
+                name: data.name,
+                sckt: "receiveData"
+            });
+        })
+        
+		socket.on('receiveFirstData', function(data){
+            var points = data.user.uservars.football_bets.points;
+            var group = data.user.uservars.football_bets.dashedGroup;
+            var usergroups = data.user.uservars.groups.groups;
+            var selections = ["all", "actual", "not actual"];
+            
+            var pointsP = document.getElementById("points");
+            if (points != undefined && points != null) {
+                pointsP.innerHTML=("Your Points: " + points[group]);
+            } else {
+                pointsP.innerHTML=("Your Points: 0");
+            }
+            
+            var groupP = document.getElementById("group");
+            groupP.innerHTML=("Selected Group: " + group);
+            
+            var gSelecter = document.getElementById("groupSelecter");
+            
+            usergroups.forEach(function(usergroup) {
+                var option=document.createElement("option");
+                option.innerHTML=usergroup;
+                option.value=usergroup;
+                if(data.user.uservars.football_bets.dashedGroup==usergroup) {
+                    option.selected="selected"
+                }
+                gSelecter.appendChild(option);
+            });
+            
+            var gameSelecter = document.getElementById("gamesSelecter");
+            
+            selections.forEach(function(sel) {
+                var option=document.createElement("option");
+                option.innerHTML=sel;
+                option.value=sel;
+                if(data.user.uservars.football_bets.dashedSelect==sel) {
+                    option.selected="selected"
+                }
+                gameSelecter.appendChild(option);
+            });
+            
+            var tableT = document.getElementById("table");
+            
+            data.games.forEach(function(game){
+                var row=document.createElement("tr");
+                row.setAttribute("class", "row");
+                tableT.appendChild(row);
+                
+                var firstFlagTH =document.createElement("th");
+                row.appendChild(firstFlagTH);
+                
+                var firstFlagDIV = document.createElement("div");
+                firstFlagDIV.setAttribute("class", "WM_pictureDIV");
+                firstFlagTH.appendChild(firstFlagDIV);
+                
+                var firstFlag = document.createElement("img");
+                firstFlag.setAttribute("class", "WM_picture");
+                if (game.teams[0]) {
+                    firstFlag.setAttribute("src", game.teams[0].flag);
+                }else{
+                    firstFlag.setAttribute("src", "/modulesCSS/wm_bets/notcalced.jpg");
+                }
+                firstFlagDIV.appendChild(firstFlag);
+                
+                var firstTeam =document.createElement("th");
+                if(game.teams[0]){
+                    firstTeam.innerHTML=game.teams[0].land; 
+                }else{
+                    firstTeam.innerHTML="TBC";
+                }
+                firstTeam.setAttribute("class", "WM_tableLeft");
+                row.appendChild(firstTeam);
+                
+                var firstTips =document.createElement("th");
+                firstTips.innerHTML=data.tipsFirst[game._id];
+                firstTips.setAttribute("class", "WM_tableTipLeft");
+                row.appendChild(firstTips);
+                
+                var firstGoals =document.createElement("th");
+                firstGoals.innerHTML=game.firstGoals;
+                firstGoals.setAttribute("class", "WM_tableRight");
+                row.appendChild(firstGoals);
+                
+                var doublePoint =document.createElement("th");
+                doublePoint.innerHTML=" : ";
+                row.appendChild(doublePoint);
+                
+                var secondGoals =document.createElement("th");
+                secondGoals.innerHTML=game.secondGoals;
+                secondGoals.setAttribute("class", "WM_tableLeft");
+                row.appendChild(secondGoals);
+                
+                var secondTips =document.createElement("th");
+                secondTips.innerHTML=data.tipsSecond[game._id];
+                secondTips.setAttribute("class", "WM_tableTipRight");
+                row.appendChild(secondTips);
+                
+                var secondTeam =document.createElement("th");
+                if(game.teams[1]){
+                    secondTeam.innerHTML=game.teams[1].land; 
+                }else{
+                    secondTeam.innerHTML="TBC";
+                }
+                secondTeam.setAttribute("class", "WM_tableRight");
+                row.appendChild(secondTeam);
+                
+                var secondFlagTH =document.createElement("th");
+                row.appendChild(secondFlagTH);
+                
+                var secondFlagDIV = document.createElement("div");
+                secondFlagDIV.setAttribute("class", "WM_pictureDIV");
+                secondFlagTH.appendChild(secondFlagDIV);
+                
+                var secondFlag = document.createElement("img");
+                secondFlag.setAttribute("class", "WM_picture");
+                if (game.teams[1]) {
+                    secondFlag.setAttribute("src", game.teams[1].flag);
+                }else{
+                    secondFlag.setAttribute("src", "/modulesCSS/wm_bets/notcalced.jpg");
+                }
+                secondFlagDIV.appendChild(secondFlag);
+            });
+        });
+        
+        socket.on('receiveData', function(data){
+            
+            var points = data.user.uservars.football_bets.points;
+            var group = data.user.uservars.football_bets.dashedGroup;
+            
+            var pointsP = document.getElementById("points");
+            if (points != undefined && points != null) {
+                pointsP.innerHTML=("Your Points: " + points[group]);
+            } else {
+                pointsP.innerHTML=("Your Points: 0");
+            }
+            
+            var groupP = document.getElementById("group");
+            groupP.innerHTML=("Selected Group: " + group);
+            
+            var paras = document.getElementsByClassName('row');
+            while(paras[0]) {
+                paras[0].parentNode.removeChild(paras[0]);
+            };
+            
+            var tableT = document.getElementById("table");
+            
+            data.games.forEach(function(game){
+                
+                
+                var row=document.createElement("tr");
+                row.setAttribute("class", "row");
+                tableT.appendChild(row);
+                
+                var firstFlagTH =document.createElement("th");
+                row.appendChild(firstFlagTH);
+                
+                var firstFlagDIV = document.createElement("div");
+                firstFlagDIV.setAttribute("class", "WM_pictureDIV");
+                firstFlagTH.appendChild(firstFlagDIV);
+                
+                var firstFlag = document.createElement("img");
+                firstFlag.setAttribute("class", "WM_picture");
+                if (game.teams[0]) {
+                    firstFlag.setAttribute("src", game.teams[0].flag);
+                }else{
+                    firstFlag.setAttribute("src", "/modulesCSS/wm_bets/notcalced.jpg");
+                }
+                firstFlagDIV.appendChild(firstFlag);
+                
+                var firstTeam =document.createElement("th");
+                if(game.teams[0]){
+                    firstTeam.innerHTML=game.teams[0].land; 
+                }else{
+                    firstTeam.innerHTML="TBC";
+                }
+                firstTeam.setAttribute("class", "WM_tableLeft");
+                row.appendChild(firstTeam);
+                
+                var firstTips =document.createElement("th");
+                firstTips.innerHTML=data.tipsFirst[game._id];
+                firstTips.setAttribute("class", "WM_tableTipLeft");
+                row.appendChild(firstTips);
+                
+                var firstGoals =document.createElement("th");
+                firstGoals.innerHTML=game.firstGoals;
+                firstGoals.setAttribute("class", "WM_tableRight");
+                row.appendChild(firstGoals);
+                
+                var doublePoint =document.createElement("th");
+                doublePoint.innerHTML=" : ";
+                row.appendChild(doublePoint);
+                
+                var secondGoals =document.createElement("th");
+                secondGoals.innerHTML=game.secondGoals;
+                secondGoals.setAttribute("class", "WM_tableLeft");
+                row.appendChild(secondGoals);
+                
+                var secondTips =document.createElement("th");
+                secondTips.innerHTML=data.tipsSecond[game._id];
+                secondTips.setAttribute("class", "WM_tableTipRight");
+                row.appendChild(secondTips);
+                
+                var secondTeam =document.createElement("th");
+                if(game.teams[1]){
+                    secondTeam.innerHTML=game.teams[1].land; 
+                }else{
+                    secondTeam.innerHTML="TBC";
+                }
+                secondTeam.setAttribute("class", "WM_tableRight");
+                row.appendChild(secondTeam);
+                
+                var secondFlagTH =document.createElement("th");
+                row.appendChild(secondFlagTH);
+                
+                var secondFlagDIV = document.createElement("div");
+                secondFlagDIV.setAttribute("class", "WM_pictureDIV");
+                secondFlagTH.appendChild(secondFlagDIV);
+                
+                var secondFlag = document.createElement("img");
+                secondFlag.setAttribute("class", "WM_picture");
+                if (game.teams[1]) {
+                    secondFlag.setAttribute("src", game.teams[1].flag);
+                }else{
+                    secondFlag.setAttribute("src", "/modulesCSS/wm_bets/notcalced.jpg");
+                }
+                secondFlagDIV.appendChild(secondFlag);
+            });
+        });
+    </script>
+</div>
+	
+	

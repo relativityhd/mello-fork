@@ -1,0 +1,37 @@
+.MELLO_WetterDash {
+  border-style: solid;
+  border-width: 1px 1px 1px 10px;
+  border-color: #aab;
+  border-left-color: #233;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  padding: 2%;
+  width: 75%;
+  background-image: url("https://www.swr.de/-/id=13937610/property=full/mgeawl/Wetter.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.MELLO_ToDoDash {
+  border-style: solid;
+  border-width: 1px 1px 1px 10px;
+  border-color: #aab;
+  border-left-color: #233;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  padding: 2%;
+  width: 75%;
+  background-image: url("https://gardengoatquote.files.wordpress.com/2012/05/to-do-list-wallpaper.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}

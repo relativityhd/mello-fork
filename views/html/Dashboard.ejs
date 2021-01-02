@@ -1,0 +1,40 @@
+<%var user=user; var dashboard=true; var vars=vars; var uservars=uservars; var title="Dashboard"; var designFolder=theme; var name=name%>
+<%- include ../parts/header %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://<%= paths.url %>:9165');
+    </script>
+
+    <link rel="stylesheet"  href="../themes/standart/css/module.css">
+    <link rel="stylesheet"  href="../themes/<%= typeof designFolder != 'undefined' ? designFolder : 'standart' %>/css/module.css">
+            <div class="MELLO_body">
+                <h3 id = "wat">Hello <%= name %>, this is your dashboard</h3>
+                
+                <% dashed.forEach(function(module){ %>
+                    <% var temppath = views[module] %>
+                    <form action="<%= paths.Modules.removeDashed %>" method="post">
+                        <input type="submit" class="MELLO_removeSubmit" value="<%= module %>" name="removeInput">
+                    </form>
+                    <%- include(temppath) %>
+                <% }); %>
+                
+                <div class="MELLO_addModule" id="modules" onclick="showList()"><p class="MELLO_centered">Add module (double click!)</p>
+                    <ol class="MELLO_dashModuleList" id="list">
+                        <% if(subed.length==0) { %>
+                            <h2>No modules available</h2>
+                            <a class="MELLO_linked" href="<%= paths.abomodule %>">Store</a>
+                        <%}%>
+                        <% subed.forEach(function(module){ %>
+                            <form action="<%= paths.Modules.addDashed %>" method="post">
+                                <!-- !!! Wichtig !!! Aufgrund des Scriptes könnten (EIGENTLICH GARANTIERT) hier Bugs auftreten! -->
+                                <lable><%= module[0] %></lable>
+                                <input type="submit" class="MELLO_addSubmit" value="<%= module[1] %>" name="addInput">
+                            </form>
+                        <% }); %>
+                        </ol>
+                </div>
+                <script src="/js/addModules.js"></script>
+            </div>
+<%- include ../parts/importDesign %>
+<%- include ../parts/footer %>

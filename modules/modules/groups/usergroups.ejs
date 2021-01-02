@@ -1,0 +1,13 @@
+<% var user=user; var designFolder=theme; var title="Groups"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/groups.css">
+<a class="GROUPS_link" href="<%= paths.Modules.Modules%>/groups/join-and-create">join or create a group</a>
+<hr>
+<div class="GROUPS_groups">
+    <h3>Your Groups:</h3>
+    <% groups.forEach(function (group){ %>
+        <a class="GROUPS_grouplink" href="<%= paths.Modules.Modules%>/groups/<%= group.name %>"><%= group.name %></a>
+    <% }) %>
+</div>
+<%- include ../../../views/parts/footer %>

@@ -1,0 +1,13 @@
+<% var user=user; var designFolder=theme; var title=groupname%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/groups.css">
+<a class="GROUPS_link" href="<%= paths.Modules.Modules%>/groups/yourgroups">back</a>
+<div class="GROUPS_groupbody">
+    <h1><%= groupname %></h1>
+    <h3>Members:</h3>
+    <% Object.keys(members).forEach(function(member) { %>
+        <p><%=members[member].username%></p>
+    <% }) %>
+</div>
+<%- include ../../../views/parts/footer %>

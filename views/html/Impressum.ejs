@@ -1,0 +1,21 @@
+<% var user=user; var title="Impressum"; var designFolder=theme%>
+<% if(user) { %>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<% } else { %>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin%>
+<% } %>
+<div class="Mello_regbody">
+    <h1>Impressum</h1>
+    <p>Design | Concepts | Implementation by:</p>
+    <h6>Robert Cuzio, Tobias Hölzer, Kevin Komm, Hannah Boldt</h6>
+    <hr>
+    <p class="MELLO_small">Made for school Project. Humboldt-Gymnasium Berlin. Consulting teacher: Mr. Pelz.</p>
+    <p class="MELLO_small">Call us via electronic Mail: endoftheyearproject@outlook.com</p>
+</div>
+<% if(user) { %>
+<%- include ../parts/footer %>
+<% } else { %>
+<%- include ../parts/footerLogin %>
+<% } %>

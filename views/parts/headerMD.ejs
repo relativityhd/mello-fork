@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mello | <%= typeof title != 'undefined' ? title : '' %></title>
+    </head>
+    <body>
+        <div class="MELLO_background"></div>
+        <div class="MELLO_container">
+            <header>
+                <a class="MELLO_linked" href="<%= paths.main %>" >Mello</a>
+                <nav class="MELLO_head">
+                    <% if(! user){%>
+                    
+                        <% if(typeof login != 'undefined' ? login : false){%>
+                        <a class="MELLO_selected" href="<%= paths.login %>" >Login</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.login %>" >Login</a>
+                        <%}%>
+                    
+                        <a class="MELLO_unselected" href="/auth/google">Google</a>
+                        <a class="MELLO_unselected" href="/auth/twitter">Twitter</a>
+                    
+                        <% if(typeof register != 'undefined' ? register : false){%>
+                        <a class="MELLO_selected" href="<%= paths.registration1 %>" >Register</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.registration1 %>" >Register</a>
+                        <%}%>
+                </nav>
+                    <%}else{%>
+                    
+                        <% if(typeof profile != 'undefined' ? profile : false){%>
+                        <a class="MELLO_selected" href="<%= paths.profilesite %>">Profile</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.profilesite %>">Profile</a>
+                        <%}%>
+                    
+                        <% if(typeof dashboard != 'undefined' ? dashboard : false){%>
+                        <a class="MELLO_selected" href="<%= paths.dashboard %>" >Dashboard</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.dashboard %>" >Dashboard</a>
+                        <%}%>
+                    
+                        <% if(typeof modules != 'undefined' ? modules : false){%>
+                        <a class="MELLO_selected" href="<%= paths.submodule %>">Modules</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.submodule %>">Modules</a>
+                        <%}%>
+                </nav>
+                        <div class="MELLO_menu" onmouseover="ShowMenu('off')" onmouseout="HideMenu('off')" onclick="ChangeMenu()">
+                            <label class="MELLO_menuLabel">Menu</label>
+                            <div id="menu" class="MELLO_menuBar">
+                                <nav>
+                                    <a class="MELLO_inMenu" href="<%= paths.settings %>">Settings</a><br>
+                                    <a class="MELLO_inMenu" href="<%= paths.changeTheme %>">Change Theme</a><br>
+                                    <a class="MELLO_inMenu" href="<%= paths.logout %>" >Logout</a><br>
+                                </nav>
+                            </div>
+                        </div>
+                
+                        <script src="/js/header.js"></script>
+                    
+                        <!--<% if(typeof usersettings != 'undefined' ? usersettings : false){%>
+                        <a class="MELLO_selected" href="<%= paths.settings %>">Settings</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.settings %>">Settings</a>
+                        <%}%>
+                    
+                        <% if(typeof changetheme != 'undefined' ? changetheme : false){%>
+                        <a class="MELLO_selected" href="<%= paths.changeTheme %>">Change Theme</a>
+                        <% }else{%>
+                        <a class="MELLO_unselected" href="<%= paths.changeTheme %>">Change Theme</a>
+                        <%}%>
+                    
+                        <a class="MELLO_unselected" href="<%= paths.logout %>" >Logout</a>--->
+                    <%}%>
+                <hr>
+            </header>
+            

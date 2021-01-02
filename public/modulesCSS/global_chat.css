@@ -1,0 +1,34 @@
+body {
+  background-color: transparent !important ;
+  line-height: 1, 5;
+}
+
+.mymsg {
+  color: #35b2e8;
+}
+
+.schrift {
+  text-align: center !important ;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #233;
+  font-variant: normal !important ;
+}
+
+.loeschen {
+  font-size: 10px;
+}
+
+#messages {
+  height: 300px;
+}
+.section {
+  padding: 1rem 1.5rem;
+}
+
+#w {
+  padding-bottom: 4rem;
+}

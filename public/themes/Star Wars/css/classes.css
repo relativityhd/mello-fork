@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Insomnia";
+  src: url("../fonts/Insomnia.ttf") format("truetype");
+}
+
+.MELLO_profilepic {
+  border-color: #332;
+}
+
+.MELLO_background {
+  background: url("../pics/star-wars-7-wallpaper.jpg") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: brightness(1.2);
+}
+
+.MELLO_menuBar {
+  border-color: #332;
+  background-color: rgba(255, 200, 100, 0.4);
+}
+
+.MELLO_menuLabel {
+  font-family: "Insomnia";
+  color: #d9a602;
+}
+
+.MELLO_inMenu {
+  font-family: "Insomnia";
+  color: #332;
+}
+
+.MELLO_uploadLabel {
+  border: 1px solid #332;
+  font-family: "Insomnia";
+  color: #332;
+}
+
+.MELLO_uploadLabel:hover {
+  border-color: ##d9a602;
+}

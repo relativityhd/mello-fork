@@ -1,0 +1,11 @@
+.MELLO_setbody {
+  padding-bottom: 5%;
+}
+
+.MELLO_theme {
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 2%;
+  font-family: "Lucida Sans Unicode";
+  font-size: 30px;
+}

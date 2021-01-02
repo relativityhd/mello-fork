@@ -1,0 +1,16 @@
+<% var user=user; var title="Update"; var designFolder=theme%>
+<% if(user) { %>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<% } else { %>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin%>
+<% } %>
+<div class="MELLO_regbody">
+    <h2>This is not ready yet. We are working on this.</h2>
+</div>
+<% if(user) { %>
+<%- include ../parts/footer %>
+<% } else { %>
+<%- include ../parts/footerLogin %>
+<% } %>

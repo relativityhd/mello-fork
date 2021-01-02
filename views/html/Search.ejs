@@ -1,0 +1,153 @@
+<% var user=isAuth; var search=true;  var title= "Search"; var designFolder=thisUser.design_theme%>
+<%- include ../parts/header %>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet"  href="/themes/standart/css/profile.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%- include ../parts/importDesign %>
+<div class="PROFILE_searchBody">
+    <div class="PROFILE_search">
+        <i class="material-icons md-24 PROFILE_searchIcon">search</i>
+        <input class="PROFILE_searchInput" type="search" placeholder="Search by username, ID, email or name" onkeyup="search(this.value)">
+        <div class="PROFILE_searchLoading" id="loading"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script>
+        var thisUser = <%-JSON.stringify(thisUser)%>
+        var socket = io.connect('http://<%= paths.url %>:9166');
+        function search(str) {
+            if (str.length>=3) {
+                document.getElementById("loading").style.display="inline-block";
+                socket.emit('requestSearch',{
+                    search:str
+                })
+            }
+            var myNode = document.getElementById("resultWrapper");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+        }
+        socket.on('receiveData', function(data){
+            var pictures=data.pictures;
+            if (data.users&&data.userIds) {
+                var myNode = document.getElementById("resultWrapper");
+                while (myNode.firstChild) {
+                    myNode.removeChild(myNode.firstChild);
+                }
+                data.userIds.forEach(function(userID){
+                    var user=data.users[userID];
+                    var resultWrapper=document.getElementById("resultWrapper");
+                    var userWrapper=document.createElement("div");
+                    userWrapper.setAttribute("class", "SEARCH_userWrapper");
+                    resultWrapper.appendChild(userWrapper);
+                    
+                    var profilePath="<%= paths.profilesite %>";
+                    var pathToProfile=(profilePath+"/"+user.username);
+                    var pathToRequest=(profilePath+"/request_friendship/"+user._id);
+                    var fullname=(user.firstname+" "+user.secondname+" "+user.lastname);
+                    var pathToPicture;
+                    
+                    if (pictures[user._id]) {
+                        pathToPicture=("/profile/picture/"+user._id);
+                    }else{
+                        pathToPicture=("/profile/picture/standardAvatar");
+                    }
+                    
+                    if (!thisUser.friends.includes(userID.toString()) && !thisUser.friends_inquiries.includes(userID.toString()) && thisUser._id!=userID){
+                        userWrapper.innerHTML=
+                        `<form class='SEARCH_userGetProfile' action=${pathToProfile} method='get'>\
+                            <button class="SEARCH_pseudoButton" >
+                                <img class='SEARCH_userPicture' src=${pathToPicture}>
+                                <div class='SEARCH_userInfoWrapper'>
+                                    <p class='SEARCH_userUsername'>${user.username}</p>
+                                    <p class='SEARCH_userName'>${fullname}</p>
+                                </div>
+                            </button>
+                        </form>
+                        <form class='SEARCH_userStart' action=${pathToRequest} method='post'>
+                            <button class='SEARCH_userAddWrapper'>
+                                <i class='material-icons md-60 SEARCH_userAdd'>add</i>
+                            </button>
+                        </form>`;
+                    }else{
+                        userWrapper.innerHTML=
+                        `<form action=${pathToProfile} method='get'>\
+                            <button class="PROFILE_pseudoButton" >
+                                <img class='SEARCH_userPicture' src=${pathToPicture}>
+                                <div class='SEARCH_userInfoWrapper'>
+                                    <p class='SEARCH_userUsername'>${user.username}</p>
+                                    <p class='SEARCH_userName'>${fullname}</p>
+                                </div>
+                            </button>
+                        </form>`;
+                    }
+                    /*
+                    var userWrapper=document.createElement("form");
+                    var userInfoWrapper=document.createElement("div");
+                    var userPicture=document.createElement("img");
+                    var userUsername=document.createElement("p");
+                    var userName=document.createElement("p");
+                    var userAddWrapper=document.createElement("form");
+                    var userAdd=document.createElement("i")
+                    var userPseudo=document.createElement("input");
+                    var userPseudoAdd=document.createElement("input");
+
+                    resultWrapper.appendChild(userWrapper);
+                    userWrapper.appendChild(userPicture);
+                    userWrapper.appendChild(userInfoWrapper);
+                    userWrapper.appendChild(userAddWrapper);
+                    userAddWrapper.appendChild(userAdd);
+                    userInfoWrapper.appendChild(userUsername);
+                    userInfoWrapper.appendChild(userName);
+                    userWrapper.appendChild(userPseudo);
+                    userAddWrapper.appendChild(userPseudoAdd);
+                    
+                    var profilePath="<%= //paths.profilesite %>";
+                    userWrapper.setAttribute("action", (profilePath+"/"+user.username));
+                    userWrapper.setAttribute("method", "post");
+                    userPseudo.setAttribute("type", "submit");
+                    userPseudo.style.display="none";
+                    userWrapper.addEventListener("click", function () {
+                        userPseudo.click();
+                    })
+                    
+                    userPseudoAdd.style.display="none";
+                    userAddWrapper.setAttribute("action", (profilePath+"/request_friendship/"+user.username));
+                    userAddWrapper.setAttribute("method", "post");
+                    
+                    if (!thisUser.friends.includes(userID.toString()) && !thisUser.friends_inquiries.includes(userID.toString()) && thisUser._id!=userID){
+                        userAdd.innerHTML="add";
+                        userAddWrapper.addEventListener("click", function () {
+                            userPseudoAdd.click();
+                            console.log("igo");
+                        })
+                    }
+
+                    if (pictures[user._id]) {
+                        userPicture.setAttribute("src", "/profile/picture/"+user._id);   
+                    }else{
+                        userPicture.setAttribute("src", "/profile/picture/standardAvatar");
+                    }
+                    userUsername.innerHTML=user.username;
+                    userName.innerHTML=(user.firstname+" "+user.secondname+" "+user.lastname);
+                    userWrapper.setAttribute("class", "SEARCH_userWrapper");
+                    userInfoWrapper.setAttribute("class", "SEARCH_userInfoWrapper");
+                    userPicture.setAttribute("class", "SEARCH_userPicture");
+                    userUsername.setAttribute("class", "SEARCH_userUsername");
+                    userName.setAttribute("class", "SEARCH_userName");
+                    userAdd.setAttribute("class", "material-icons md-60 SEARCH_userAdd");
+                    userAddWrapper.setAttribute("class", "SEARCH_userAddWrapper");
+                    */
+                })
+            }
+            document.getElementById("loading").style.display="none";
+        })
+    </script>
+    
+    <div class="PROFILE_resultsSearch" id="resultWrapper">
+    </div>
+</div>
+<br>
+<br>
+<%- include ../parts/footer %>

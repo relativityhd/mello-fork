@@ -1,0 +1,571 @@
+:root {
+  --textColor: #edd;
+  --textColor-2: #d35c5c;
+  --borderColor: #ec8;
+  --borderColor-2: #eb6;
+  --backColor: #46e;
+  --backColor-2: #138;
+}
+
+@media only screen and (max-width: 1400px) {
+  .WM_tipps,
+  .WM_nextGames {
+    top: 175px;
+  }
+}
+
+a {
+  color: var(--borderColor);
+}
+
+hr {
+  border-color: var(--borderColor);
+  border-width: 1px;
+}
+
+table {
+  font-family: "Lucida Sans Unicode";
+  font-size: 12px;
+  color: var(--textColor);
+  border-collapse: collapse;
+}
+
+h1,
+h3,
+h6 {
+  color: var(--borderColor);
+  padding-bottom: 0%;
+  padding-top: 0%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+label {
+  color: var(--textColor);
+}
+
+.MELLO_background {
+  background: url("./FIFAbackground.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: brightness(1.2);
+}
+
+.WM_groups {
+  position: relative;
+  top: 0px;
+  border: solid 1px var(--borderColor);
+  border-radius: 15px;
+  width: 20%;
+  min-width: 320px;
+  padding: 1.5%;
+  margin: 2%;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  display: inline-block;
+  vertical-align: top;
+}
+
+.WM_standings {
+  border: solid 1px var(--borderColor);
+  border-radius: 15px;
+  padding: 1.5%;
+  margin: 2%;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  display: inline-block;
+  vertical-align: top;
+}
+
+.WM_tipps {
+  position: relative;
+  top: 0px;
+  border: solid 1px var(--borderColor);
+  border-radius: 15px;
+  padding: 1.5%;
+  margin: 2%;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  display: inline-block;
+  vertical-align: top;
+}
+
+.WM_littleinfo {
+  font-size: 11px;
+  margin: 2%;
+  color: var(--textColor);
+}
+
+.WM_overline-label {
+  font-size: 25px;
+  font-variant: small-caps;
+  color: var(--borderColor);
+}
+
+.WM_grouplink {
+  border: none;
+  background-color: transparent;
+  color: var(--textColor);
+}
+
+.WM_groupLink:hover {
+  background-color: rgba(250, 250, 250, 0.1);
+}
+
+.WM_tiplink {
+  font-size: 25px;
+  font-variant: small-caps;
+  color: var(--borderColor);
+  border: none;
+  background-color: transparent;
+  float: right;
+}
+
+.WM_tiplink:hover {
+  background-color: rgba(250, 250, 250, 0.1);
+}
+
+.WM_tableLeft {
+  text-align: left;
+  padding: 3px;
+}
+
+.WM_tableLeftBig {
+  text-align: left;
+  padding: 3px;
+  font-size: 18px;
+}
+
+.WM_tableRight {
+  text-align: right;
+  padding: 3px;
+}
+
+.WM_tableTipLeft {
+  text-align: left;
+  color: var(--textColor-2);
+  padding: 3px;
+}
+
+.WM_tableTipRight {
+  text-align: right;
+  color: var(--textColor-2);
+  padding: 3px;
+}
+
+.WM_tableTipCenter {
+  text-align: center;
+  color: var(--textColor-2);
+  padding: 3px;
+}
+
+.WM_tableHeadLeft {
+  text-align: left;
+  border-bottom: solid 1px var(--borderColor) !important;
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.WM_tableHeadLeftBig {
+  text-align: left;
+  border-bottom: solid 1px var(--borderColor) !important;
+  padding: 3px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.WM_tableHeadRight {
+  text-align: right;
+  border-bottom: solid 1px var(--borderColor) !important;
+  padding: 3px;
+  margin-left: 10px;
+}
+
+.WM_tableHeadCenter {
+  text-align: center;
+  border-bottom: solid 1px var(--borderColor);
+  padding: 3px;
+}
+
+.WM_tableHead {
+  font-size: 13px;
+  font-variant: small-caps;
+  color: var(--borderColor);
+  border-bottom: solid 1px var(--borderColor);
+  transition: all 0.015s ease-out;
+}
+
+.WM_tableBigHead {
+  font-size: 23px;
+  font-variant: small-caps;
+  color: var(--borderColor);
+  border-bottom: solid 1px var(--borderColor);
+}
+
+.WM_tableEditHead {
+  font-size: 22px;
+  font-variant: small-caps;
+  color: var(--borderColor);
+  border-bottom: solid 1px var(--borderColor);
+}
+
+.WM_tipTable {
+  display: inline-block;
+  padding: 2%;
+  margin: 1%;
+  border: solid 4px;
+  border-color: var(--borderColor);
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 348px;
+  height: auto;
+  transition: all 0.015s ease-out;
+}
+
+.WM_tipTable:hover {
+  top: -5px;
+  cursor: pointer;
+}
+
+.WM_tableTip {
+  font-size: 12px;
+  position: relative;
+  transition: all 0.015s ease-out;
+}
+
+.WM_groupTable {
+  display: inline-block;
+  padding: 1%;
+  margin: 1%;
+  width: 300px;
+  border: solid 4px;
+  border-color: var(--borderColor);
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.WM_editTable {
+  font-size: 20px;
+  display: inline-block;
+}
+
+.WM_input {
+  color: var(--textColor);
+  background-color: transparent;
+  width: 200px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.WM_input:focus {
+  border: solid 1px var(--borderColor);
+  background-color: transparent;
+}
+
+.WM_inputGroupped {
+  color: var(--textColor);
+  width: 80px;
+  text-align: center;
+  background-color: transparent;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 6%;
+  margin-bottom: 6%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.WM_inputGroupped:focus {
+  border: solid 1px var(--borderColor);
+  background-color: transparent;
+}
+
+.WM_alredyPlayedTip {
+  color: var(--textColor);
+  background-color: transparent;
+  display: inline-block;
+}
+
+.WM_editSubmit {
+  border: none;
+  color: var(--borderColor);
+  background-color: transparent;
+  font-size: 30px;
+  font-variant: small-caps;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.WM_bigTable {
+  font-size: 22px;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.WM_pictureDIVTips {
+  height: 15px;
+  width: 30px;
+}
+
+.WM_pictureDIV {
+  height: 10px;
+  width: 20px;
+  transition: all 0.015s ease-out;
+}
+
+.WM_picture {
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  vertical-align: top;
+}
+
+input[type="number"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.WM_smallbody {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  padding-bottom: 20%;
+}
+
+@media (min-width: 918px) {
+  .WM_smallbody {
+    max-width: 900px;
+  }
+}
+
+.WM_select {
+  width: 20%;
+  height: 30px;
+  padding-left: 10px;
+  border: solid 1px var(--borderColor);
+  color: var(--textColor);
+  background-color: transparent;
+  font-size: 16px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.WM_select:focus::-ms-value {
+  background-color: transparent;
+}
+
+.WM_select option {
+  color: #666;
+}
+
+.WM_shadingEdit {
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  padding: 1%;
+  border: solid 4px var(--borderColor);
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  text-align: center;
+}
+
+.WM_gameWrapper {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 1%;
+  overflow: hidden;
+  border: solid 3px;
+  border-color: var(--borderColor);
+  border-radius: 10px;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  top: 0px;
+  -webkit-transition: top 0.15s ease-out;
+}
+
+.WM_gameWrapper:hover {
+  top: -5px;
+}
+
+.WM_backgroundImages {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.WM_image {
+  display: inline-block;
+  background-size: cover;
+  background-position: 50%;
+  box-sizing: border-box;
+  flex: 1 1 50%;
+  width: 150px;
+  height: 75px;
+}
+
+.WM_imagePlaceholder {
+  display: inline-block;
+  background-image: url(notcalced.jpg);
+  background-size: cover;
+  background-position: 50%;
+  box-sizing: border-box;
+  flex: 1 1 50%;
+  width: 300px;
+  height: 75px;
+}
+
+.WM_infoWrapper {
+  padding: 5%;
+}
+
+.WM_stadium {
+  color: var(--textColor);
+  font-size: 11px;
+}
+.WM_group,
+.WM_date {
+  color: var(--textColor);
+  font-size: 14px;
+}
+
+.WM_teams {
+  font-size: 17px;
+}
+
+.WM_wLWrapper {
+  text-align: right;
+}
+
+.WM_wLContainer {
+  text-align: right;
+  float: right;
+}
+
+.WM_worldcupLogo {
+  background-image: url(WorldcupRussia.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 900px;
+  height: 300px;
+}
+
+.WM_nextGamesWrapper,
+.WM_oldGamesWrapper {
+  text-align: center;
+}
+
+.WM_nextGames {
+  position: relative;
+  top: 0px;
+  border: solid 1px var(--borderColor);
+  border-radius: 15px;
+  padding: 1.5%;
+  margin: 2%;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  display: inline-block;
+  vertical-align: top;
+}
+
+.WM_tipGroups {
+  text-align: center;
+}
+
+.WM_tipGroup {
+  position: relative;
+  top: 0px;
+  border: solid 1px var(--borderColor);
+  border-radius: 15px;
+  padding: 1.5%;
+  margin: 2%;
+  background-image: linear-gradient(
+    10deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  display: inline-block;
+  vertical-align: top;
+}
+
+.WM_tipGroupII {
+  display: inline-block;
+  padding: 1%;
+  margin: 1%;
+  width: 250px;
+  border: solid 4px;
+  border-color: var(--borderColor);
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-image: linear-gradient(
+    190deg,
+    var(--backColor-2) 15%,
+    var(--backColor) 85%
+  );
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.WM_tipGroupIII {
+  position: relative;
+  left: 25px;
+}
+
+.WM_tipGroupName {
+  font-size: 22px;
+}

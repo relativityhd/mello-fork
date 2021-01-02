@@ -1,0 +1,99 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<form class="WM_smallbody" action="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips" method="post">
+    <h3>Enter your tips!</h3>
+    <br>
+    <a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit as Groups</a>
+    <h4><%=typeof success != 'undefined' ? success : ""%></h4>
+    <br>
+    <br>
+    <label for="group">Select a group</label>
+    <select class="WM_select" id="selecter" name="group" onchange="changeGroup()">
+        <% groups.forEach(function(group){ %>
+            <option value="<%= group %>"><%= group %></option>
+        <% }) %>
+    </select>
+    <br>
+    <input class="WM_editSubmit" type="submit" value="save Tips">
+    <br>
+    <br>
+    <div class="WM_shadingEdit">
+        <table class="WM_editTable">
+            <tr class="WM_tableEditHead">
+                <th></th>
+                <th class="WM_tableHeadLeft">First Team</th>
+                <th class="WM_tableHeadCenter">Tip</th>
+                <th>:</th>
+                <th class="WM_tableHeadCenter">Tip</th>
+                <th class="WM_tableHeadRight">Second Team</th>
+                <th></th>
+            </tr>
+            <% actualgames.forEach(function(game){ %>
+                <tr>
+                    <th>
+                        <div class="WM_pictureDIVTips">
+                            <img class="WM_picture" src="<%= game.teams[0].flag%>">
+                        </div>
+                    </th>
+                    <th class="WM_tableLeft"><%= game.teams[0].land %></th>
+                    <th class="WM_tableTipCenter"><input class="WM_input" type="number" name="<%= game._id%>_firstTip" id="<%= game._id%>_firstTip"></th>
+                    <th>:</th>
+                    <th class="WM_tableTipCenter"><input class="WM_input" type="number" name="<%= game._id%>_secondTip" id="<%= game._id%>_secondTip"></th>
+                    <th class="WM_tableRight"><%= game.teams[1].land %></th>
+                    <th>
+                        <div class="WM_pictureDIVTips">
+                            <img class="WM_picture" src="<%= game.teams[1].flag%>">
+                        </div>
+                    </th>
+                </tr>
+            <%})%>
+        </table>
+    </div>
+    <br>
+    <input class="WM_editSubmit" type="submit" value="save Tips">
+    <br>
+</form>
+<script>
+    //===============================================================
+    //==============!!! WARNING SECURITY HOLE !!!"===================
+    //===JSON.stringify could be getting dangerous if user enter ====
+    //===code as string in inputs====================================
+    //===============================================================
+    var actualgames=<%-JSON.stringify(actualgames)%>;
+    var bets=<%-JSON.stringify(bets)%>;
+    function changeGroup(){
+        var e=document.getElementById("selecter");
+        var group=e.value;
+        if (group=="all") {
+            group="global";
+        }
+        actualgames.forEach(function(game){
+            var firstID=(game._id+"_firstTip");
+            var secondID=(game._id+"_secondTip");
+            var first = document.getElementById(firstID);
+            var second = document.getElementById(secondID);
+            var betted=false;
+            bets.forEach(function(bet){ %>
+                if (bet.game._id==game._id && bet.group.name==group) {
+                    first.placeholder=bet.firstGoals;
+                    second.placeholder=bet.secondGoals;
+                    betted=true;
+                }
+            })
+            if (betted==false) {
+                first.placeholder="-";
+                second.placeholder="-";
+            }
+        })
+    }
+    changeGroup();
+</script>
+<%- include ../../../views/parts/footer %>

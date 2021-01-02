@@ -1,0 +1,18 @@
+<% var user=user; var register=true; var title="Register";%>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin %>
+            <form class="MELLO_regbody" action="<%= paths.registration1 %>" method="post">
+                <h3>Register</h3>
+                <% if (credentials != "") { %><h2><%= credentials %></h2><% } %>
+                <input name="username" type="text" placeholder="Enter a Userame"                <% if (usernameSpaceholder != "") { %>value="<%= usernameSpaceholder %>"<% } %>>
+                <% if (errName != "") { %><h2><%= errName %></h2><% } %>
+                <input name="email" type="email" placeholder="Enter a E-Mail"                   <% if (emailSpaceholder != "") { %>value="<%= emailSpaceholder %>"<% } %>>
+                <% if (errMail != "") { %><h2><%= errMail %></h2><% } %>
+                <input name="password" type="password" placeholder="Enter a Password"           <% if (passwordSpaceholder != "") { %>value="<%= passwordSpaceholder %>"<% } %>>
+                <% if (errPassword != "") { %><h2><%= errPassword %></h2><% } %>
+                <input name="password_confirm" type="password" placeholder="Repeat Password"    <% if (passwordConfirmSpaceholder != "") { %>value="<%= passwordConfirmSpaceholder %>"<% } %>>
+                <% if (errConfirm != "") { %><h2><%= errConfirm %></h2><% } %>
+                <button type="submit">Register</button>
+            </form>
+<%- include ../parts/footerLogin %>
+

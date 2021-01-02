@@ -1,0 +1,38 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<h1><%=groupname%></h1>
+<table class="WM_bigTable">
+    <tr class="WM_tableBigHead">
+        <th class="WM_tableHeadLeft">Name</th>
+        <th class="WM_tableHeadLeft">Points</th>
+    </tr>
+    <% names.forEach(function(name){ %>
+        <tr>
+            <th class="WM_tableLeft"><a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips/<%=name%>"><%= name %></a></th>
+            <th class="WM_tableLeft"><%= points[name] %></th>
+        </tr>
+    <% }) %>
+</table>
+<br>
+<hr>
+<% if (groupname!="global") {if (admin) {%>
+<form action="<%= paths.Modules.Modules%>/football-wm-betting-game/editGroup" method="post">
+    <h3>Settings: set point-rules!</h3>
+    <input style="display:none" name="Groupname" id="Groupname" value="<%=groupname%>">
+    <label for="equal">Game and Tip is euqal <input name="equal" type="number" id="equal"placeholder="<%= group.moduleVars.football_points.equal %>"></label><br>
+    <label for="diff">Difference is equal <input name="diff" type="number" id="diff" placeholder="<%= group.moduleVars.football_points.diff %>"></label><br>
+    <label for="win">Winner is equal <input name="win" type="number" id="win" placeholder="<%= group.moduleVars.football_points.win %>"></label><br>
+    <input type="submit" value="confirm change">
+</form>
+<%}}%>
+<br>
+<br>
+<%- include ../../../views/parts/footer %>

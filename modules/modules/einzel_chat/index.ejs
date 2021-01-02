@@ -1,0 +1,1697 @@
+<% var user=user %>
+
+<%- include ../../../views/parts/header %>
+<link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+<%- include ../../../views/parts/importDesign %>
+<div class="body">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/modulesCSS/einzel_chat.css">
+
+
+
+
+
+
+
+<div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell--span-4" id="cell1ID" >
+
+                <div class="UserList" id="UserListID" >
+           
+                        <div class="search-container" class="elevation-demo-surface mdc-elevation--z24" >
+                                <div class="mdc-text-field mdc-text-field--box username">
+                                        <input type="text" class="mdc-text-field__input" id="username-input" name="username">
+                                        <label class="mdc-floating-label" for="username-input">Username</label>
+                                        <div class="mdc-line-ripple"></div>
+                                </div>
+                                <button class="mdc-button mdc-button--raised search" id="searchButtonID" >
+                                        <i class="material-icons mdc-button__icon" aria-hidden="true">search</i>
+                                    Search
+                                </button>
+                                
+                        </div>
+            
+                        <ul class="mdc-list" id="MDUserList" >
+                                
+                                <!--
+
+                                <li class="mdc-list-item" id="robelbob" >
+                                        <span class="mdc-list-item__graphic material-icons" aria-hidden="true">person</span>
+                                        <div> Robert </div>
+                                    </li>
+                                <li role="separator" class="mdc-list-divider"></li>
+                                <li class="mdc-list-item" id="robelbob2">
+                                        <span class="mdc-list-item__graphic material-icons" aria-hidden="true">person</span>
+                                    Jost</li>
+                                <li role="separator" class="mdc-list-divider"></li>
+                                <li class="mdc-list-item" id="robelbob3">
+                                    Hans</li>
+                                <li role="separator" class="mdc-list-divider"></li>
+
+
+                                -->
+                                
+                        </ul>     
+
+                
+            
+                </div>
+
+                <div class="StrangerList" id="StrangerListID" > 
+
+                    <ul class="mdc-list" id="MDStrangerlist" >
+                        
+                    </ul>  
+                    
+                </div>
+
+
+                <div class="mdc-chip stranger" id="stranger1">
+                        <i class="material-icons mdc-chip__icon mdc-chip__icon--leading" id="strangersymbol" >visibility</i>
+                        <div class="mdc-chip__text" id="stranger2" >A stranger wants to chat with you! Click to view.</div>
+                </div>
+
+
+                <div class="mdc-chip strangerdismiss" id="strangerAbort1">
+                        <i class="material-icons mdc-chip__icon mdc-chip__icon--leading" id="strangerAbortSymbol" >cancel</i>
+                        <div class="mdc-chip__text" id="strangerAbort2" >Hide</div>
+                </div>
+
+          </div>
+          <div class="mdc-layout-grid__cell--span-5">
+
+                <h3 id = "test">You are <%=name%></h3>
+
+                <div role="progressbar" class="mdc-linear-progress">
+                        <div class="mdc-linear-progress__buffering-dots"></div>
+                        <div class="mdc-linear-progress__buffer"></div>
+                        <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                          <span class="mdc-linear-progress__bar-inner"></span>
+                        </div>
+                        <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                          <span class="mdc-linear-progress__bar-inner"></span>
+                        </div>
+                </div>
+
+                    <div class="mdc-card" id="messages" >
+                        Please first select a User to chat with or join a group by subscribing to the Group-Module.
+                    </div>
+
+                <div class="message-container" id="message-containerID" class="elevation-demo-surface mdc-elevation--z24" >
+                        <div class="mdc-text-field mdc-text-field--box messagesend" id="textareamessage" >
+                                <input type="text" class="mdc-text-field__input" id="message-input" name="message">
+                                <label class="mdc-floating-label" for="message-input">Type in your message...</label>
+                                <div class="mdc-line-ripple"></div>
+                        </div>
+                        <button class="mdc-button mdc-button--raised sendbutton" id="sendbuttonidid" >
+                                <i class="material-icons mdc-button__icon" aria-hidden="true">send</i>
+                            Send
+                        </button>
+                        
+            </div>
+
+
+                <div id="status"></div> 
+                
+
+                
+                
+
+
+
+
+          </div>
+
+
+          
+          <div class="mdc-layout-grid__cell--span-2">
+                
+<!--
+            <div class="mdc-chip mdc-chip--selected" id="status2">
+                <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">face</i>
+                <div class="mdc-chip__checkmark">
+                    <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
+                        <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
+                            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                      </svg>
+                </div>
+                <div class="mdc-chip__text" id="status3" >Message send</div>
+              </div>
+
+   -->
+
+              <div class="mdc-chip" id="status2">
+                <i class="material-icons mdc-chip__icon mdc-chip__icon--leading" id="statusSymbl" >cancel</i>
+                <div class="mdc-chip__text" id="status3" >Add to calendar</div>
+              </div>
+
+         
+        </div>
+
+
+
+        </div>
+      </div>
+
+
+<script>
+
+//Wenn mal die Anzahl der Child Nodes benötigt wird
+/* 
+setInterval(function(){
+    console.log(document.getElementById("MDStrangerlist").childNodes.length);
+}, 2000)
+*/
+
+            
+
+
+
+
+
+
+    if (document.getElementById('sdfdsf')){
+        console.log("lol1");
+    }else{
+        console.log("lol2");
+
+    }
+    /*
+                        document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+  });*/
+
+/*
+var mut = false;
+var countLoops = 0;
+var countLoopsmid = 10;
+var mutationObserver = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    //console.log(mutation);
+    mut = true;
+    countLoops = countLoops + 1;
+    /*if (countLoops == 199){
+        countLoops = 0
+    }*/
+    /*
+    if(countLoopsmid == countLoops){
+        changeProgress();
+    }
+  });
+});
+*/
+
+ //setInterval(function(){     console.log(mut); }, 3000);
+
+/*
+function changeProgress(){
+    if(mut == true){
+        if (linearProgress.determinate == false){
+            return null;
+        } else {
+            linearProgress.determinate = false;
+
+        }
+    } else {
+        linearProgress.determinate = true;
+    }
+}
+*/
+
+/*
+// Starts listening for changes in the root HTML element of the page.
+mutationObserver.observe(document.documentElement, {
+ attributes: true,
+ characterData: true,
+  childList: true,
+  subtree: true,
+  attributeOldValue: true,
+  characterDataOldValue: true
+
+});
+*/
+/*
+  characterData: true,
+  childList: true,
+  subtree: true,
+  attributeOldValue: true,
+  characterDataOldValue: true
+*/
+    //document.getElementById('robelbob').style.boxShadow = "0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12)";
+/*
+    document.getElementById('robelbob').addEventListener("mouseenter", MouseEnterRob);
+    document.getElementById('robelbob').addEventListener("mouseleave", MouseLeaveRob);
+    document.getElementById('robelbob2').addEventListener("mouseenter", MouseEnterRob);
+    document.getElementById('robelbob2').addEventListener("mouseleave", MouseLeaveRob);
+    document.getElementById('robelbob3').addEventListener("mouseenter", MouseEnterRob);
+    document.getElementById('robelbob3').addEventListener("mouseleave", MouseLeaveRob);
+
+function MouseEnterRob(){
+                document.getElementById(this.id).style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)";
+               // document.getElementById(this.id).style.color = "white";
+            }
+function MouseLeaveRob(){
+                document.getElementById(this.id).style.boxShadow = "0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)";
+               // document.getElementById(this.id).style.color = "white";
+               }
+
+*/
+
+var element = document.querySelectorAll('.mdc-linear-progress')[0];
+var linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(element);
+linearProgress.progress = 1;
+linearProgress.determinate = true;
+
+//mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
+
+
+/*
+const mdcSnackbar = require('mdc-snackbar');
+const MDCSnackbar = mdcSnackbar.MDCSnackbar;
+const MDCSnackbarFoundation = mdcSnackbar.MDCSnackbarFoundation;
+*/
+
+
+
+
+/*
+document.querySelector('mdc-card').addEventListener('load', function(){
+  // The image is ready!
+  console.log("done");
+});
+document.getElementById("messages").addEventListener('load', lulu);
+*/
+
+/*
+
+
+
+
+var element = document.querySelectorAll('.mdc-linear-progress')[0];
+var linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(element);
+linearProgress.progress = 1;
+*/
+
+//import {MDCTextField} from '@material/textfield';
+
+//const username = new MDCTextField(document.querySelector('.username'));
+//const password = new MDCTextField(document.querySelector('.password'));
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.search'));
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.sendbutton'));
+//mdc.ripple.MDCRipple.attachTo(document.querySelector('.next'));
+
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-chip'));
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.stranger'));
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.strangerdismiss'));
+
+
+
+            //mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+            mdc.textField.MDCTextField.attachTo((document.querySelector('.username')));
+            mdc.textField.MDCTextField.attachTo((document.querySelector('.messagesend')));
+
+           // mdc.textField.MDCTextField.attachTo((document.querySelector('.password')));
+            //mdc.MDCTextField.attachTo(document.querySelector('.username'));
+            //mdc.MDCTextField.attachTo(document.querySelector('.password'));
+
+            //const username = new MDCTextField(document.querySelector('.username'));
+//const password = new MDCTextField(document.querySelector('.password'));
+/*
+            document.getElementById("searchButtonID").addEventListener("mouseenter", MouseEnterFile);
+            document.getElementById("searchButtonID").addEventListener("mouseleave", MouseLeaveFile);
+            document.getElementById("searchButtonID").addEventListener("click", MouseClickFile);
+            */
+//#80bfff
+            function MouseEnterFile(){
+                document.getElementById(this.id).style.backgroundColor = "#80bfff";
+                document.getElementById(this.id).style.color = "white";}
+            function MouseLeaveFile(){
+                document.getElementById(this.id).style.backgroundColor = "#4da6ff";
+                document.getElementById(this.id).style.color = "white";}
+
+   
+        document.getElementById("searchButtonID").addEventListener('click', MouseClickFile);
+
+        function MouseClickFile(){
+            console.log(document.getElementById("username-input").value);
+
+            var socketsend = io.connect('http://<%=paths.url%>:9167');
+
+            if(socketsend !== undefined){
+                console.log(document.getElementById("username-input").value);
+
+                var data={
+                        currentUser: '<%= currentuser_id %>',
+                        username: document.getElementById("username-input").value,
+                    }
+            
+            // Dateninhalt senden.
+                socketsend.emit('addUser',data);
+            
+                //socket.emit('addUser', );
+            // Handle Output
+            //socket.on('output', function(data){
+            }
+        }
+
+/*
+var SearchInputElement = document.createElement("input");
+SearchInputElement.className = "searchInput";
+SearchInputElement.name = "searchInput";
+SearchInputElement.type = "text";
+SearchInputElement.placeholder = "Search by Username";
+
+document.getElementById("searchDivID").appendChild(SearchInputElement);*/
+</script>
+<% if (userlist) {  %>
+    <% userlist.forEach(function(module){ %>
+
+        <script>
+
+            
+    
+        </script>
+
+    <% }); %>
+<% }; %>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+</script>
+<script>
+    
+    
+    linearProgress.determinate = false;
+    setTimeout(() => {
+        linearProgress.determinate = true;
+    }, 2100);
+    
+
+
+
+    (function init(){
+        var element = function(id){
+            return document.getElementById(id);
+        }
+
+        // Get Elements
+        var status = element('status');
+        var messages = element('messages');
+        var textarea = element('textarea');
+        var username = element('username');
+        var clearBtn = element('clear');
+        var send = element('send');
+        var currentChat = "";
+
+        // Set default status
+       var statusDefault = status.textContent;
+
+        var setStatusSuccess = function(s, symbl){
+
+            lastChange = Date.now()
+
+            // Set status
+            document.getElementById("status3").textContent = s;
+
+            if (symbl == "err"){
+                document.getElementById("statusSymbl").innerHTML = "cancel";
+            };
+            if (symbl == "send"){
+                document.getElementById("statusSymbl").innerHTML = "send";
+            };
+            if (symbl == "message"){
+                document.getElementById("statusSymbl").innerHTML = "message";
+            };
+            if (symbl == "check"){
+                document.getElementById("statusSymbl").innerHTML = "check";
+            };
+
+            document.getElementById("status2").style.background = "#C8E6C9";
+            document.getElementById("status2").style.visibility = 'visible';      // Visible
+
+
+            if(s !== statusDefault){
+                var delay = setTimeout(function(){
+                    //document.getElementById("status2").style.visibility = 'hidden';      // Hide;
+                    if ((Date.now() - lastChange) > 3500){
+                        console.log(Date.now() - lastChange);
+                        setStatusSuccess(statusDefault);
+                    }
+                }, 4000);
+            } else {
+                document.getElementById("status2").style.visibility = 'hidden';      // Hide;
+            }
+        }
+        
+        var setStatusError = function(s, symbl){
+
+             lastChange = Date.now()
+
+            // Set status
+
+            if (symbl == "err"){
+                document.getElementById("statusSymbl").innerHTML = "cancel";
+            };
+            if (symbl == "send"){
+                document.getElementById("statusSymbl").innerHTML = "send";
+            };
+            if (symbl == "message"){
+                document.getElementById("statusSymbl").innerHTML = "message";
+            };
+            if (symbl == "check"){
+                document.getElementById("statusSymbl").innerHTML = "check";
+            };
+
+
+            document.getElementById("status3").textContent = s;
+            document.getElementById("status2").style.background = "#FFCDD2";
+            document.getElementById("status2").style.visibility = 'visible';      // Visible
+
+
+
+            if(s !== statusDefault){
+                var delay = setTimeout(function(){
+                    //document.getElementById("status2").style.visibility = 'hidden';      // Hide;
+                    if ((Date.now() - lastChange) > 3500){
+                        console.log(Date.now() - lastChange);
+                        setStatusSuccess(statusDefault);
+                    }
+                }, 4000);
+            } else {
+                document.getElementById("status2").style.visibility = 'hidden';      // Hide;
+            }
+        }
+
+        // Connect to socket.io
+        var socket = io.connect('http://<%=paths.url%>:9167');
+
+        // Check for connection
+        if(socket !== undefined){
+            
+            console.log('Connected to socket...');
+            console.log(socket);
+            document.getElementById('message-input').value = '';
+
+            var CurrentUser = "<%= currentuser_id %>";
+            console.log(CurrentUser);
+
+            socket.emit('firstRequest', {username: "<%= currentuser_id %>"});
+
+            socket.on('addUserResult', function(data){
+
+                console.log('hellllllllllokjfksadnfjsdd<klfnlj');
+                console.log(data.exists);
+                if (data.exists == true){
+                    console.log('hurray');
+                    for(i = 0; i < data.newUserID.length; i++) {
+
+                      //  <li class="mdc-list-item" id="robelbob" >
+                       //                 <span class="mdc-list-item__graphic material-icons" aria-hidden="true">person</span>
+                         //           Robert</li>
+                           //     <li role="separator" class="mdc-list-divider"></li>
+
+                        var newUserInMDList = document.createElement("li");
+                            newUserInMDList.className ="mdc-list-item";
+                            newUserInMDList.id = data.newUserID[i];
+                            newUserInMDList.username =  data.newUserID[i];
+                            newUserInMDList.userID = data.newUserID[i];
+                            newUserInMDList.MessageCount = 0;
+                            
+                            //newUserInMDList.innerHTML = "hallo";
+
+                        var newSeperatorInMDList = document.createElement("li");
+                            newSeperatorInMDList.role = "separator";
+                            newSeperatorInMDList.className = "mdc-list-divider";
+
+                        document.getElementById("MDUserList").appendChild(newUserInMDList);
+                        document.getElementById("MDUserList").appendChild(newSeperatorInMDList);
+
+                          /*
+                          var newSpanInMDList = newUserInMDList.createElement("span");
+                            newSpanInMDList.className = "mdc-list-item__graphic material-icons";
+                            newSpanInMDList.setAttribute("aria-hidden", "true");
+                            newSpanInMDList.innerHTML = 'person';
+*/
+                        
+                        var newSpanInMDList = document.createElement("span");
+                            newSpanInMDList.className = "mdc-list-item__graphic material-icons";
+                            newSpanInMDList.setAttribute("aria-hidden", "true");
+                            newSpanInMDList.innerHTML = 'person';
+
+
+                            document.getElementById(data.newUserID[i]).appendChild(newSpanInMDList);
+
+                        console.log("Stina Test Test Test Test Test: " + data.newUserUsername[i]);
+
+                        var newUsernameDivInMDList = document.createElement("div");
+                            newUsernameDivInMDList.className = "newUsernameDivInMDList";
+                            newUsernameDivInMDList.innerHTML = data.newUserUsername[i];
+
+
+                        document.getElementById(data.newUserID[i]).appendChild(newUsernameDivInMDList);
+
+
+
+                        
+
+
+
+                        //Message count
+
+
+
+
+                        var newCountDivInMDList = document.createElement("div");
+                            newCountDivInMDList.style.color = "#666666"
+                            newCountDivInMDList.innerHTML = "5"
+                            //newCountDivInMDList.style.position = "relative";
+                            //newCountDivInMDList.style.float = "right";
+                            newCountDivInMDList.style.marginRight = "0" ;
+                            newCountDivInMDList.style.marginLeft = "auto";
+                            newCountDivInMDList.style.visibility = "hidden";
+                            newCountDivInMDList.id = data.newUserID[i] + "count";
+
+                        document.getElementById(data.newUserID[i]).appendChild(newCountDivInMDList);
+
+
+
+
+
+
+
+                        var newMessageSpanInMDList = document.createElement("span");
+                            newMessageSpanInMDList.className = "mdc-list-item__graphic material-icons";
+                            newMessageSpanInMDList.setAttribute("aria-hidden", "true");
+                            newMessageSpanInMDList.innerHTML = 'message';
+                            newMessageSpanInMDList.style.color = "#6200ee";
+                            //newMessageSpanInMDList.right = "0";
+                            //newMessageSpanInMDList.position = "relative";
+                            newMessageSpanInMDList.style.marginRight = "0";
+                            newMessageSpanInMDList.style.marginLeft = "8px";
+                            newMessageSpanInMDList.style.visibility = "hidden";
+                            newMessageSpanInMDList.id = data.newUserID[i] + "symbl";
+
+                            document.getElementById(data.newUserID[i]).appendChild(newMessageSpanInMDList);
+
+                        console.log("Stina Test Test Test Test Test: " + data.newUserUsername[i]);
+
+                       
+
+                         if (data.new == true){
+                            setStatusSuccess("New User successfully added", "check");
+                        };
+
+
+
+
+
+
+                        document.getElementById(data.newUserID[i]).addEventListener("mouseenter", MouseEnterMDListItem);
+                        document.getElementById(data.newUserID[i]).addEventListener("mouseleave", MouseLeaveMDListItem);
+                        document.getElementById(data.newUserID[i]).addEventListener("click", MouseClickMDListItem);
+
+
+                    function MouseEnterMDListItem(){
+                        document.getElementById(this.id).style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)";
+                        // document.getElementById(this.id).style.color = "white";
+                    }
+                    function MouseLeaveMDListItem(){
+                        document.getElementById(this.id).style.boxShadow = "0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)";
+                        // document.getElementById(this.id).style.color = "white";
+                    }
+                    function MouseClickMDListItem(){
+
+                        data3 = {
+                                ownID: "<%= currentuser_id %>",
+                                username: this.username,
+                                userID: this.userID
+                            }
+
+
+                            if (document.getElementById(currentChat.Id)){
+                                document.getElementById(currentChat.Id).style.borderRight = "0px solid #4da6ff";
+                            }
+                            
+                            document.getElementById(this.userID).style.borderRight = "4px solid #6200ee";
+
+
+
+                            currentChat = {
+                            group: false,
+                            Username: this.username,
+                            Id: this.userID
+                            }
+                        
+                            document.getElementById("message-input").value = '';
+                            messages.textContent = '';
+                            socket.emit('showMessanges', data3);
+                            document.getElementById("message-containerID").style.top = 0;
+                            document.getElementById("message-containerID").style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)"
+
+                            removeMissesMessages(this.id);
+
+
+
+                         
+
+                    }
+
+
+                    function removeMissesMessages(id){
+
+                        var messageFromUser = document.getElementById(id);
+                        var messageSymbol = document.getElementById(id + "symbl");
+                        var countnumber = document.getElementById(id + "count");    
+                            //var userCount = document.getElementById(data[0].thisUser).MessageCount;
+
+                            //document.getElementById(data[0].thisUser).MessageCount = userCount + 1;
+                            //console.log(document.getElementById(data[0].thisUser).MessageCount);
+
+                        countnumber.style.visibility = "hidden";
+                        messageSymbol.style.visibility = "hidden";
+                        messageFromUser.style.background = "transparent";
+
+                        
+                        var RMMdata = {
+                            RemoveFromID: "<%= currentuser_id %>",
+                            RemoveID: id
+                        };
+
+                        console.log(RMMdata);
+
+                        socket.emit('removeMissedMessangesFromCertainUser', RMMdata);
+
+                    };
+
+
+                            //document.getElementById(data.newUserID[i]).innerHTML = "Hallo"
+                           // newUserInMDList.innerHTML = 'Hallo';
+/*
+                        var newUserInList = document.createElement("div");
+                            newUserInList.className = "UserInList";
+                            newUserInList.name = "searchInput";
+                            //newUserInList.innerHTML = data.newUserUsername[i];
+                            newUserInList.id = data.newUserID[i];
+                            newUserInList.username = data.newUserID[i];
+                            newUserInList.userID = data.newUserID[i];
+                    
+                    
+                        document.getElementById("bigDivID").appendChild(newUserInList);
+
+                        
+                        console.log('new user id:' + data.newUserID[i]);
+*/
+/*
+                        var newAvatarInList = document.createElement("img");
+                            newAvatarInList.className = "userPic";
+                            newAvatarInList.src = "/registration/avatar/" + data.newUserID[i];
+                            //<img class="userPic" src="/registration/avatar/<%= currentuser_id %>">
+
+                        document.getElementById(data.newUserID[i]).appendChild(newAvatarInList);                        
+*/
+/*
+                        var newUsernameInList = document.createElement("div");
+                            newUsernameInList.className = 'UsernameInList';
+                            newUsernameInList.innerHTML = data.newUserUsername[i];
+                            newUsernameInList.id = data.newUserUsername[i];
+                            newUsernameInList.username = data.newUserUsername[i];
+                            newUsernameInList.userID = data.newUserID[i];
+
+
+                        document.getElementById(data.newUserID[i]).appendChild(newUsernameInList);
+*/
+/*
+                        document.getElementById(data.newUserUsername[i]).addEventListener("mouseenter", MouseEnterUser);
+                        document.getElementById(data.newUserUsername[i]).addEventListener("mouseleave", MouseLeaveUser);
+                        document.getElementById(data.newUserUsername[i]).addEventListener("click", MouseClickUser);
+                        */
+
+
+                        function MouseEnterUser(){
+                            //document.getElementById(this.id).style.backgroundColor = "#80bfff";
+                            document.getElementById(this.id).style.borderRight = "3px solid white";
+                            document.getElementById(this.id).style.color = "black";
+                        }
+                        function MouseLeaveUser(){
+                            //document.getElementById(this.id).style.backgroundColor = "#4da6ff";
+                            document.getElementById(this.id).style.borderRight = "3px solid transparent";
+                            document.getElementById(this.id).style.color = "black";
+                        }
+                        function MouseClickUser(){
+                            console.log('click');
+                            console.log(this.userID);
+                            data3 = {
+                                ownID: "<%= currentuser_id %>",
+                                username: this.username,
+                                userID: this.userID
+                            }
+
+                            currentChat = {
+                            group: false,
+                            Username: this.username,
+                            Id: this.userID
+                            }
+                        
+                            document.getElementById('message-input').value = '';
+                            messages.textContent = '';
+                            socket.emit('showMessanges', data3);
+                        }
+                    };
+
+                    document.getElementById("username-input").value = "";
+                    
+                    console.log("-----------------users---------------");
+                    console.log(data);
+
+                }
+
+            });
+            // Handle Output
+            socket.on('output', function(data){
+
+                console.log(data);
+                console.log(currentChat.Id);
+                //console.log(data[0].secondUser);
+                //console.log(data[0].thisUser);
+
+                if (data[0].thisUser == currentChat.Id || data[0].thisUser == "<%= currentuser_id %>"){
+                    var e = document.getElementById("test");
+                    var name = "<%=name%>";
+                    if(data.length){
+                        var progressValue = 1 / data.length;
+                        var progressValueStart = 1 / data.length;
+                        
+                        var isScrolledToBottom = messages.scrollHeight - messages.clientHeight <= messages.scrollTop + 1;
+
+                        for(var x = 0;x < data.length;x++){
+                            if(data[x].name == name){
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'mymsg');
+                            p.textContent = data[x].name+": "+data[x].message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.lastChild);
+                            
+                     
+                            message.appendChild(p);
+                                }else{
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'chat-text');
+                            p.textContent = data[x].name+": "+data[x].message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.lastChild);
+                           
+                            message.appendChild(p);
+                            }
+                            if(isScrolledToBottom){
+                                messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+                            }
+                        }
+                    }
+
+
+
+                }else{
+
+                    if (document.getElementById(data[0].thisUser)){
+                        console.log("Ding, New Message!");
+                        var messageFromUser = document.getElementById(data[0].thisUser);
+                        var messageSymbol = document.getElementById(data[0].thisUser + "symbl");
+                        var countnumber = document.getElementById(data[0].thisUser + "count");    
+                        var userCount = document.getElementById(data[0].thisUser).MessageCount;
+
+                        document.getElementById(data[0].thisUser).MessageCount = userCount + 1;
+
+                        console.log(document.getElementById(data[0].thisUser).MessageCount);
+
+                        if (userCount > "98"){
+                            countnumber.innerHTML = "99+";
+                            countnumber.style.visibility = "visible";
+                            messageSymbol.style.visibility = "visible";
+                        }else{
+                            countnumber.innerHTML = userCount + 1;
+                            countnumber.style.visibility = "visible";
+                            messageSymbol.style.visibility = "visible";
+                        }
+
+
+                        messageFromUser.style.background = "green";
+                    }else{
+                        
+
+                    }
+
+                };
+
+             
+            });
+
+
+            socket.on('GroupOutput', function(groupData){
+
+                var name = groupData.name;          //String
+                var id = groupData.id;              //Integer
+                var members = groupData.members;    //Object
+
+
+                    console.log(name);
+
+                    for (property in members) { 
+                        console.log("property: " +property);
+                    }
+
+
+                    console.log('Process of Adding a Group Begins!');
+                    //for(i = 0; i < data.newUserID.length; i++) {
+
+                        var newGroupInMDList = document.createElement("li");
+                            newGroupInMDList.className ="mdc-list-item";
+                            newGroupInMDList.id = id;
+                            newGroupInMDList.groupName = name;
+                            newGroupInMDList.members = members;
+                            newGroupInMDList.MessageCount = 0;
+                            
+
+                        var newSeperatorInMDList = document.createElement("li");
+                            newSeperatorInMDList.role = "separator";
+                            newSeperatorInMDList.className = "mdc-list-divider";
+
+                        document.getElementById("MDUserList").appendChild(newGroupInMDList);
+                        document.getElementById("MDUserList").appendChild(newSeperatorInMDList);
+
+                        
+                        var newGroupSpanInMDList = document.createElement("span");
+                            newGroupSpanInMDList.className = "mdc-list-item__graphic material-icons";
+                            newGroupSpanInMDList.setAttribute("aria-hidden", "true");
+                            newGroupSpanInMDList.innerHTML = 'group';
+
+
+                        document.getElementById(id).appendChild(newGroupSpanInMDList);
+
+                        var newGroupNameDivInMDList = document.createElement("div");
+                        newGroupNameDivInMDList.innerHTML = name;
+                        newGroupNameDivInMDList.className = "newUsernameDivInMDList";
+
+
+
+                        document.getElementById(id).appendChild(newGroupNameDivInMDList);
+
+
+                        var newGroupCountDivInMDList = document.createElement("div");
+                            newGroupCountDivInMDList.style.color = "#666666"
+                            newGroupCountDivInMDList.innerHTML = "5"
+                            //newCountDivInMDList.style.position = "relative";
+                            //newCountDivInMDList.style.float = "right";
+                            newGroupCountDivInMDList.style.marginRight = "0" ;
+                            newGroupCountDivInMDList.style.marginLeft = "auto";
+                            newGroupCountDivInMDList.style.visibility = "hidden";
+                            newGroupCountDivInMDList.id = id + "count";
+
+                        document.getElementById(id).appendChild(newGroupCountDivInMDList);
+
+
+                        var newGroupMessageSpanInMDList = document.createElement("span");
+                            newGroupMessageSpanInMDList.className = "mdc-list-item__graphic material-icons";
+                            newGroupMessageSpanInMDList.setAttribute("aria-hidden", "true");
+                            newGroupMessageSpanInMDList.innerHTML = 'message';
+                            newGroupMessageSpanInMDList.style.color = "#6200ee";
+                            //newMessageSpanInMDList.right = "0";
+                            //newMessageSpanInMDList.position = "relative";
+                            newGroupMessageSpanInMDList.style.marginRight = "0";
+                            newGroupMessageSpanInMDList.style.marginLeft = "8px";
+                            newGroupMessageSpanInMDList.style.visibility = "hidden";
+                            newGroupMessageSpanInMDList.id = id + "symbl";
+
+                            document.getElementById(id).appendChild(newGroupMessageSpanInMDList);
+
+                        console.log("Stina Test Test Test Test Test: " );
+
+                        document.getElementById(id).addEventListener("mouseenter", MouseGroupEnterMDListItem);
+                        document.getElementById(id).addEventListener("mouseleave", MouseGroupLeaveMDListItem);
+                        document.getElementById(id).addEventListener("click", MouseGroupClickMDListItem);
+
+
+                    function MouseGroupEnterMDListItem(){
+                        document.getElementById(this.id).style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)";
+                        // document.getElementById(this.id).style.color = "white";
+                    }
+                    function MouseGroupLeaveMDListItem(){
+                        document.getElementById(this.id).style.boxShadow = "0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)";
+                        // document.getElementById(this.id).style.color = "white";
+                    }
+                    function MouseGroupClickMDListItem(){
+
+                        data3 = {
+                                ownID: "<%= currentuser_id %>",
+                                username: this.groupName,
+                                userID: this.id
+                            }
+
+
+
+                             if (document.getElementById(currentChat.Id)){
+                                document.getElementById(currentChat.Id).style.borderRight = "0px solid #4da6ff";
+                            }
+                            
+                            document.getElementById(this.id).style.borderRight = "4px solid #6200ee";
+
+
+
+                            currentChat = {
+                            group: true,
+                            Username: this.groupName,
+                            Id: this.id
+                            }
+                        
+                            document.getElementById("message-input").value = '';
+                            messages.textContent = '';
+
+                            socket.emit('showGroupMessanges', data3);
+
+                            document.getElementById("message-containerID").style.top = 0;
+                            document.getElementById("message-containerID").style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)"
+
+                            removeMissesMessagesGroup(this.id);
+
+                    };
+
+                     function removeMissesMessagesGroup(id){
+
+                        var messageFromUser = document.getElementById(id);
+                        var messageSymbol = document.getElementById(id + "symbl");
+                        var countnumber = document.getElementById(id + "count");    
+                            //var userCount = document.getElementById(data[0].thisUser).MessageCount;
+
+                            //document.getElementById(data[0].thisUser).MessageCount = userCount + 1;
+                            //console.log(document.getElementById(data[0].thisUser).MessageCount);
+
+                        countnumber.style.visibility = "hidden";
+                        messageSymbol.style.visibility = "hidden";
+                        messageFromUser.style.background = "transparent";
+
+
+                        var RMMdata = {
+                            RemoveFromID: "<%= currentuser_id %>",
+                            RemoveID: id
+                        };
+
+                        console.log(RMMdata);
+
+                        socket.emit('removeMissedMessangesFromCertainUser', RMMdata);
+
+                    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            });
+
+            socket.on('firstoutput', function(data){
+
+                console.log("startstartstart");
+
+                console.log(data);
+                console.log(currentChat.Id);
+                //console.log(data[0].secondUser);
+                //console.log(data[0].thisUser);
+                //if (data[0].thisUser == currentChat.Id || data[0].thisUser == "<%= currentuser_id %>"){
+
+                    linearProgress.determinate = true;
+
+                    var e = document.getElementById("test");
+                    var name = "<%=name%>";
+                    if(data.length){
+
+
+                linearProgress.determinate = false;
+                setTimeout(() => {
+                    linearProgress.determinate = true;
+                }, 2100);
+
+
+                        var progressValue = 1 / data.length;
+                        var progressValueStart = 1 / data.length;
+                        console.log(progressValue);
+                        console.log(progressValueStart);
+                        
+                        //messages.textContent = '';
+
+
+                        for(var x = 0 ;x < data.length ;x++){
+                            if(data[x].name == name){
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'mymsg');
+                            p.textContent = data[x].name+": "+data[x].message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.firstChild);
+                            message.appendChild(p);
+                
+                                }else{
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'chat-text');
+                            p.textContent = data[x].name+": "+data[x].message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.firstChild);
+                            message.appendChild(p);
+                            }
+                        }
+                    }
+                    messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+
+            });
+
+
+
+            // Get Status From Server
+            socket.on('status', function(data){
+                // get message status
+                
+                if (data.success == true){
+
+                    setStatusSuccess((typeof data === 'object')? data.message : data, data.Symbol);
+
+                } else {
+
+                    setStatusError((typeof data === 'object')? data.message : data, data.Symbol);
+
+                }
+
+
+                
+
+                // If status is clear, clear text
+                if(data.clear){
+                    document.getElementById('message-input').value = '';
+                }
+            });
+                
+            // Handle Input
+            document.getElementById('message-input').addEventListener('keydown', function(event){
+                if(currentChat !==""){
+
+                    if (currentChat.group == true){
+
+                        if(event.which === 13 && event.shiftKey == false){
+                        // Emit to server input
+                        var e = document.getElementById("test");
+                        var name = "<%= name %>";
+                        socket.emit('inputGroup', {
+                            thisUser: currentChat.Id,
+                            secondUser: "<%= currentuser_id %>",
+                            name: name,
+                            message: this.value
+                        });
+                        document.getElementById('message-input').value = '';
+                        event.preventDefault();
+                        }
+                    }else{
+
+                        if(event.which === 13 && event.shiftKey == false){
+                        // Emit to server input
+                        var e = document.getElementById("test");
+                        var name = "<%= name %>";
+                        socket.emit('input', {
+                            thisUser: "<%= currentuser_id %>",
+                            secondUser: currentChat.Id,
+                            name: name,
+                            message: this.value
+                        });
+                        document.getElementById('message-input').value = '';
+                        event.preventDefault();
+                        }
+
+                    }
+
+                }
+                
+            })
+
+
+            document.getElementById('sendbuttonidid').addEventListener('click', function(event){
+                
+                console.log("Hallo");
+
+                if(currentChat !==""){
+
+                    console.log("Current Chat Group");
+                    console.log(currentChat.group);
+
+                    if (currentChat.group == true){
+
+                        if(event.shiftKey == false){
+                            var e = document.getElementById("test");
+                            var name = "<%= name %>";
+                            socket.emit('inputGroup', {
+                                thisUser: currentChat.Id, //"<%= currentuser_id %>"
+                                secondUser: "<%= currentuser_id %>",
+                                name: name,
+                                message: document.getElementById('message-input').value
+                            });
+                            document.getElementById('message-input').value = '';
+                            event.preventDefault();
+                        }
+
+                    } else {
+
+                        if(event.shiftKey == false){
+                        // Emit to server input
+                        var e = document.getElementById("test");
+                        var name = "<%= name %>";
+                        socket.emit('input', {
+                            thisUser: "<%= currentuser_id %>",
+                            secondUser: currentChat.Id,
+                            name: name,
+                            message: document.getElementById('message-input').value
+                        });
+                        document.getElementById('message-input').value = '';
+                        event.preventDefault();
+                        }
+
+                    };
+
+
+                   
+
+                }
+                
+            })
+            
+
+            socket.on('NewUserInStrangerList', function(){
+                console.log("There is a new User in the strange list ;)");
+                // The first bubble should pop up
+                if(StrangerChipMainBoolean == false){
+                    StrangerChipMainAppear();
+                };
+                StrangerChipMainLightUp();
+            });
+
+
+            socket.on('NewMessage', function(data44){
+     
+        
+
+
+
+                console.log("..................++++++++NewMessage+++++++.....................");
+                //console.log(data44);
+                var MessageCount = data44.MissedMessageArrayCount;
+                var MessageID = data44.IDMissedMessageArray;
+
+                console.log(currentChat.Id);
+                console.log(data44.messageOutput.thisUser);
+
+                if (data44.messageOutput.thisUser == currentChat.Id ){ //|| data44.messageOutput.thisUser == "<%= currentuser_id %>"
+
+                    var e = document.getElementById("test");
+                    var name = "<%=name%>";
+                    console.log(data44.messageOutput.thisUser);
+                    if(data44.messageOutput.thisUser){
+                    
+                        //Remove Message from Missed Messages
+                        var RMMdata = {
+                            RemoveFromID: "<%= currentuser_id %>",
+                            RemoveID: data44.messageOutput.thisUser
+                        };
+
+                        console.log(RMMdata);
+
+                        socket.emit('removeMissedMessangesFromCertainUser', RMMdata);
+
+
+                        //var progressValue = 1 / data44.message.length;
+                        //var progressValueStart = 1 / data44.message.length;
+                        
+                        var isScrolledToBottom = messages.scrollHeight - messages.clientHeight <= messages.scrollTop + 1;
+
+                        //for(var x = 0;x < data44.data.length;x++){
+                            if(data44.messageOutput.name == name){
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'mymsg');
+                            p.textContent = data44.messageOutput.name+": "+data44.messageOutput.message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.lastChild);
+                            
+                     
+                            message.appendChild(p);
+                                }else{
+                            var message = document.createElement('span');
+                            message.setAttribute('class', 'chat-message');
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'chat-text');
+                            p.textContent = data44.messageOutput.name+": "+data44.messageOutput.message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.lastChild);
+                           
+                            message.appendChild(p);
+                            }
+                            if(isScrolledToBottom){
+                                messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+                            }
+                        
+                    }
+
+                    setStatusSuccess("New Message", "message");
+
+                } else {
+
+                    //Display all the missed messages
+                
+                    for(var i = 0; i < MessageID.length; i++){
+                        console.log("hello");
+                        console.log("ID: " + MessageID[i]);
+                        console.log(document.getElementById("MessageID[i]"));
+
+                        if (document.getElementById(MessageID[i])){
+
+                            console.log("Ding, New Message!");
+                            var messageFromUser = document.getElementById(MessageID[i]);
+                            var messageSymbol = document.getElementById(MessageID[i] + "symbl");
+                            var countnumber = document.getElementById(MessageID[i] + "count");    
+                            //var userCount = document.getElementById(data[0].thisUser).MessageCount;
+
+                            //document.getElementById(data[0].thisUser).MessageCount = userCount + 1;
+                            //console.log(document.getElementById(data[0].thisUser).MessageCount);
+
+                                    if (MessageCount[i] > "98"){
+                                        countnumber.innerHTML = "99+";
+                                        countnumber.style.visibility = "visible";
+                                        messageSymbol.style.visibility = "visible";
+                                    }else{
+                                        countnumber.innerHTML = MessageCount[i];
+                                        countnumber.style.visibility = "visible";
+                                        messageSymbol.style.visibility = "visible";
+                                    }
+
+                            messageFromUser.style.background = "#FFEBEE"; // #FFEBEE
+        
+                            
+                        };
+
+                    }
+
+
+
+                };
+                
+
+
+            });
+
+            
+            socket.on('StrangerRequest', function(){
+                console.log("I wanna chatt!");
+                if(StrangerChipMainBoolean == false){
+                    StrangerChipMainAppear();
+                };
+                StrangerChipMainLightUp();
+            });
+
+            socket.on('StrangerListDataReturn', function(data){
+                //var UserStrangerListID = data.UserStrangerListID;
+                //var UserStrangerListUsername = data.UserStrangerListUsername;
+                console.log("StrangerListDataReturnHappened");
+                console.log(data);
+                addStrangerListData(data);
+            });
+            
+
+            function addStrangerListData(data){
+
+                var UserStrangerListID = data.UserStrangerListID;
+                var UserStrangerListUsername = data.UserStrangerListUsername;         
+                var StrangerList = document.getElementById("MDStrangerlist");
+
+                console.log("Console log data2");
+                console.log(UserStrangerListID);
+                console.log(UserStrangerListUsername);
+
+
+
+                for (var s = 0; s < UserStrangerListID.length; s++){
+
+
+                    // check for each item in array if it is already in the list
+                    if (document.getElementById(UserStrangerListID[s] + "Stranger")){
+                        //User is already in the stranger list
+                    }else{
+                        //User has to be added to the stranger list
+
+                         console.log();
+
+                        var newUserInStrangerList = document.createElement("li");
+                            newUserInStrangerList.className ="mdc-list-item";
+                            newUserInStrangerList.id = UserStrangerListID[s] + "Stranger";
+                            newUserInStrangerList.username =  UserStrangerListUsername[s];
+                            newUserInStrangerList.userID = UserStrangerListID[s];
+
+                        var newSeperatorInStrangerList = document.createElement("li");
+                            newSeperatorInStrangerList.role = "separator";
+                            newSeperatorInStrangerList.className = "mdc-list-divider";
+                            newSeperatorInStrangerList.id = UserStrangerListID[s] + "Seperator";
+
+                        StrangerList.appendChild(newUserInStrangerList);
+                        StrangerList.appendChild(newSeperatorInStrangerList);
+
+
+                         var newSpanInStrangerList = document.createElement("span");
+                            newSpanInStrangerList.className = "mdc-list-item__graphic material-icons";
+                            newSpanInStrangerList.setAttribute("aria-hidden", "true");
+                            newSpanInStrangerList.innerHTML = 'add';
+
+                        
+                        document.getElementById(UserStrangerListID[s] + "Stranger").appendChild(newSpanInStrangerList);
+
+                        var newUsernameDivInStrangerList = document.createElement("div");
+                            newUsernameDivInStrangerList.innerHTML = UserStrangerListUsername[s];
+                            newUsernameDivInStrangerList.className = "newUsernameDivInMDList";
+
+                        document.getElementById(UserStrangerListID[s] + "Stranger").appendChild(newUsernameDivInStrangerList);
+
+
+
+                        
+                        document.getElementById(UserStrangerListID[s] + "Stranger").addEventListener("mouseenter", StrangerListItemEnter);
+                        document.getElementById(UserStrangerListID[s] + "Stranger").addEventListener("mouseleave", StrangerListItemLeave);
+                        document.getElementById(UserStrangerListID[s] + "Stranger").addEventListener("click", StrangerListItemClick);
+                        
+                        function StrangerListItemEnter(){
+                            document.getElementById(this.id).style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)";
+                            // document.getElementById(this.id).style.color = "white";
+                        };
+                        function StrangerListItemLeave(){
+                            document.getElementById(this.id).style.boxShadow = "0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)";
+                            // document.getElementById(this.id).style.color = "white";
+                        };
+                        function StrangerListItemClick(){
+                            var data={
+                                currentUser: '<%= currentuser_id %>',
+                                username: this.username,
+                            }
+    
+                            socket.emit('addUser',data);
+
+
+                            // Delete User from Stranger List
+                            //client
+                            document.getElementById(this.id).style.left = "360px"; //"360px";
+
+                            setTimeout(() => {
+                                StrangerList.removeChild(document.getElementById(this.id));
+                                StrangerList.removeChild(document.getElementById(this.userID + "Seperator"));
+                                
+                                //Check if Stranger List is empty,
+                                    
+                                    console.log("childnodelenghts...............-------------------------++++++++++++++++,,,,,,,,,,,");
+                                    console.log(document.getElementById("MDStrangerlist").childNodes.length);
+                                if(document.getElementById("MDStrangerlist").childNodes.length == 1){
+                                    //if empty, list should disappear
+                                    StrangerListDisappear("All strangers were added.");
+                                    StrangerChipMainDisappearAfterFourSeconds();
+                                    console.log("gogogogoogogogogogogo");
+                                }
+                            }, 210);
+                            //client end
+
+                            //server
+                            var data2={
+                                currentUser: '<%= currentuser_id %>',
+                                usernameToRemove: this.username,
+                                userIDToRemove: this.userID
+                            }
+
+                            socket.emit('removeStranger', data2);
+                            //server END
+                            // Delete User from Stranger List END 
+
+                            
+
+
+                        };
+
+                    }
+
+
+                }
+
+                
+                                    /*
+                                    var newSpanInMDList = newUserInMDList.createElement("span");
+                                        newSpanInMDList.className = "mdc-list-item__graphic material-icons";
+                                        newSpanInMDList.setAttribute("aria-hidden", "true");
+                                        newSpanInMDList.innerHTML = 'person';
+                                    */
+
+
+                               // console.log("Stina Test Test Test Test Test: " + data.newUserUsername[i]);
+
+                  
+            };
+           
+
+            function StrangerListAppear(){
+
+                
+                var StrangerChip = document.getElementById("stranger1");
+                var UserList = document.getElementById("UserListID");
+                var MDUserList = document.getElementById("MDUserList");
+
+
+                document.getElementById("strangersymbol").innerHTML = "person";
+
+                document.getElementById("strangerAbort1").style.visibility = "visible";
+                document.getElementById("strangerAbort1").style.top = "10px";
+                document.getElementById("strangerAbort1").style.background = "#EF9A9A";
+
+
+                document.getElementById("stranger2").textContent = "Click User to add to your list";
+                StrangerChip.style.background = "#E3F2FD";
+                StrangerChip.style.top = "10px";
+
+
+                if(StrangerListBoolean == false){
+                    
+                    StrangerChip.style.left = "-250px";
+
+                    setTimeout(() => {
+                        StrangerChip.style.left = "0";
+                    }, 100);
+                }
+
+                StrangerListBoolean = true;
+
+
+                                //UserList.style.marginBottom = "80px";
+                                
+                document.getElementById("StrangerListID").style.top ="0px";
+                document.getElementById("StrangerListID").style.boxShadow = "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)";
+                UserList.style.height = "410px";
+                MDUserList.style.maxHeight = "344px";
+
+
+            };
+
+            function StrangerListDisappear(text){
+
+                StrangerListBoolean = false;
+
+                var UserList = document.getElementById("UserListID");
+                var StrangerChip = document.getElementById("stranger1");
+                var MDUserList = document.getElementById("MDUserList");
+
+                UserList.style.height = "560px";
+                MDUserList.style.maxHeight = "494px";
+                StrangerChip.style.top = "-140px";
+                document.getElementById("StrangerListID").style.top ="-180px";
+                document.getElementById("StrangerListID").style.boxShadow = "0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12)";
+                document.getElementById("strangerAbort1").style.top = "-300px";
+                StrangerChip.style.visibility = "visible";
+
+
+                if(StrangerListBoolean == false){
+                    
+                    StrangerChip.style.left = "-250px";
+
+                    setTimeout(() => {
+                        StrangerChip.style.left = "0";
+                        document.getElementById("stranger2").textContent = text;
+                        document.getElementById("strangersymbol").innerHTML = "visibility";
+
+                        if (text == "All strangers were added."){
+                            StrangerChip.style.background = "#C8E6C9";
+                        } else {
+                            StrangerChip.style.background = "#e0e0e0";
+                        }
+
+                        document.getElementById("strangerAbort1").style.visibility = "hidden";
+
+                    }, 100);
+                }
+
+
+                //document.getElementById("strangerAbort1").style.top = "-800px";
+
+            };
+
+            function StrangerChipMainAppear(){
+
+                StrangerChipMainBoolean = true
+
+                var UserList = document.getElementById("UserListID");
+                var StrangerList = document.getElementById("StrangerListID");
+                var StrangerChip = document.getElementById("stranger1");
+                var StrangerChipSymbol = document.getElementById("strangersymbol");
+                var MDUserList = document.getElementById("MDUserList");
+                
+                document.getElementById("stranger2").textContent = "A stranger wants to chat with you! Click to view.";
+                
+                UserList.style.height = "560px";
+                MDUserList.style.maxHeight = "494px";
+                        
+                StrangerChip.style.top = "-140px";
+                StrangerChip.style.visibility = "visible";
+
+                StrangerChipSymbol.innerHTML = "visibility";
+            };
+
+          
+          
+            function StrangerChipMainLightUp(){
+                var StrangerChip = document.getElementById("stranger1");
+                var StrangerChipSymbol = document.getElementById("strangersymbol");
+                
+                StrangerChip.style.background = "#BBDEFB";
+                StrangerChip.style.boxShadow = "0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)";
+
+                setTimeout(() => {
+                    StrangerChip.style.background = "#e0e0e0";
+                    StrangerChip.style.boxShadow = "0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)";
+                }, 600);
+
+                console.log(StrangerChip.style.background);
+            }
+
+
+    function StrangerChipMainDisappearAfterFourSeconds(){
+    
+        StrangerChipMainBoolean = false;
+
+        var UserList = document.getElementById("UserListID");
+        var StrangerList = document.getElementById("StrangerListID");
+        var StrangerChip = document.getElementById("stranger1");
+        var StrangerChipSymbol = document.getElementById("strangersymbol");
+        var MDUserList = document.getElementById("MDUserList");
+        
+        setTimeout(() => {
+            
+            if(StrangerChipMainBoolean == false){
+
+                UserList.style.height = "600px";        //560px
+                MDUserList.style.maxHeight = "534px";   //494px
+                
+                StrangerChip.style.top = "-300px";
+                StrangerChip.style.visibility = "hidden";
+
+            };
+
+        }, 4000);
+        
+
+
+    }
+
+
+
+init22();
+
+
+//Innit Stuff, can be put pretty much everywhere!
+function init22(){
+
+    console.log("häääääääääääääääääääääääää");
+    StrangerChipMainBoolean = false;
+    StrangerListBoolean = false;
+    
+    var UserList = document.getElementById("UserListID");
+    var StrangerList = document.getElementById("StrangerListID");
+    var StrangerChip = document.getElementById("stranger1");
+    var StrangerChipSymbol = document.getElementById("strangersymbol");
+    var MDUserList = document.getElementById("MDUserList");
+    var DismissButton = document.getElementById("strangerAbort1");
+
+    
+    StrangerChip.addEventListener("click", StrangerChipMainClick);
+    DismissButton.addEventListener("click", StrangerDismissClick);
+
+    function StrangerChipMainClick(){
+        // EventListenerForMainChip
+
+        data = {
+            thisUser: "<%= currentuser_id %>"
+        }
+        
+        console.log('StrangerListDataRequest');
+        socket.emit('StrangerListDataRequest', data);
+
+        StrangerListAppear();
+
+    }
+
+    function StrangerDismissClick(){
+
+        StrangerListDisappear("A stranger wants to chat with you! Click to view.");
+
+    }
+
+};
+
+//Innit Stuff END
+
+
+
+
+
+            
+/*
+            // Handle Chat Clear
+            clearBtn.addEventListener('click', function(){
+                socket.emit('clear');
+            });
+*/
+            // Clear Message
+            socket.on('cleared', function(){
+                messages.textContent = '';
+            });
+        }
+
+    })();
+</script>
+<%- include ../../../views/parts/footer %>

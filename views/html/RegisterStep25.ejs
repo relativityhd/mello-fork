@@ -1,0 +1,26 @@
+<% var user=user; var title="Register: Picture";%>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin %>
+            <div class="MELLO_regbody">
+                <h3>Set your picture</h3>
+                <form action="<%= paths.registration2Upload %>" method="post" enctype="multipart/form-data">
+                    <input name="file" id='fileElem' type="file" value="Choose you Profile Picture" onchange="handleFile(this.files)" style="display:none"><br><br>
+                    <label class="MELLO_uploadLabel" id="fileSelect"><img id="prevImg" class="MELLO_profilepic" src="/registration/avatar/<%= file.filename %>">Select your Profilepicture</label>
+                    <h2><%= typeof msg != 'undefined' ? msg : '' %></h2>
+                    <br>
+                    <button>continue</button>
+                </form>
+                <script src="../js/uploadPicture.js"></script>
+                <!--<form action="<%= paths.registration2Upload %>" method="post" enctype="multipart/form-data">
+                    <img class="MELLO_profilepic" src="/registration/avatar/<%= file.filename %>">
+                    <input name='file' type="file" value="Choose you Profile Picture"><br><br>
+                    <h2><%= typeof msg != 'undefined' ? msg : '' %></h2>
+                    <button>Upload</button>
+                </form>
+                <br>
+                <br>
+                <form action="<%= paths.registration3 %>" method="get">
+                    <button>Continue</button>
+                </form>--->
+            </div>
+<%- include ../parts/footerLogin %>

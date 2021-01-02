@@ -1,0 +1,121 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<form class="WM_body" action="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips" method="post">
+    <h3>Enter your tips!</h3>
+    <h4><%=typeof success != 'undefined' ? success : ""%></h4>
+    <br>
+    <br>
+    <label for="group">Select a group</label>
+    <select class="WM_select" id="selecter" name="group" onchange="changeGroup()">
+        <% groups.forEach(function(group){ %>
+            <option value="<%= group %>"><%= group %></option>
+        <% }) %>
+    </select>
+    <br>
+    <input class="WM_editSubmit" type="submit" value="save Tips">
+    <br>
+    <br>
+    <div class="WM_shadingEdit">
+            <% groupgames.forEach(function(game){ %>
+                <div class="WM_gameWrapper">
+                    <div class="WM_backgroundImages">
+                        <% if (game.teams[0]&&game.teams[1]) {%>
+                        <div class="WM_image" style="background-image:url(<%= game.teams[0].flag%>)"></div>
+                        <div class="WM_image" style="background-image:url(<%= game.teams[1].flag%>)"></div>
+                        <%}else{%>
+                        <div class="WM_imagePlaceholder"></div>
+                        <%}%>
+                    </div>
+                    <div class="WM_infoWrapper">
+                        <p class="WM_stadium"><%= game.place%></p>
+                        <% if (game.teams[0]&&game.teams[1]) {%>
+                        <h6 class="WM_teams"><%= game.teams[0].land%> <%= game.firstGoals%> : <%= game.secondGoals%> <%= game.teams[1].land%></h6>
+                        <%}else{%>
+                        <h6 class="WM_teams">TBC <%= game.firstGoals%> : <%= game.secondGoals%> TBC</h6>
+                        <%}%>
+                        <label>
+                            
+                            <% if (game.actual==true) {%>
+                            <input class="WM_inputGroupped" type="number" name="<%= game._id%>_firstTip" id="<%= game._id%>_firstTip">
+                            <%}else{%>
+                            <p class="WM_alredyPlayedTip" name="<%= game._id%>_firstTip" id="<%= game._id%>_firstTip"></p>
+                            <%}%>
+                            :
+                            <% if (game.actual==true) {%>
+                            <input class="WM_inputGroupped" type="number" name="<%= game._id%>_secondTip" id="<%= game._id%>_secondTip">
+                            <%}else{%>
+                            <p class="WM_alredyPlayedTip" name="<%= game._id%>_secondTip" id="<%= game._id%>_secondTip"></p>
+                            <%}%>
+                        </label>
+                        <p class="WM_group"><%= game.type%></p>
+                        <p class="WM_date" id="<%= game._id%>Date"></p>
+                    </div>
+                </div>
+            <%})%>
+    </div>
+</form>
+<br>
+<br>
+<script src="/modulesCSS/wm_bets/moment.js"></script>
+<script>
+    var games=<%-JSON.stringify(groupgames)%>;
+    games.forEach(function(game){
+        var e=document.getElementById(game._id+"Date");
+        var gameMoment=moment(game.date).format('MMMM Do, H:mm');
+        e.innerHTML=gameMoment;
+    })
+</script>
+<script>
+    //===============================================================
+    //==============!!! WARNING SECURITY HOLE !!!"===================
+    //===JSON.stringify could be getting dangerous if user enter ====
+    //===code as string in inputs====================================
+    //===============================================================
+    var groupgames=<%-JSON.stringify(groupgames)%>;
+    var bets=<%-JSON.stringify(bets)%>;
+    function changeGroup(){
+        var e=document.getElementById("selecter");
+        var group=e.value;
+        if (group=="all") {
+            group="global";
+        }
+        groupgames.forEach(function(game){
+            var firstID=(game._id+"_firstTip");
+            var secondID=(game._id+"_secondTip");
+            var first = document.getElementById(firstID);
+            var second = document.getElementById(secondID);
+            var betted=false;
+            bets.forEach(function(bet){ %>
+                if (bet.game._id==game._id && bet.group.name==group) {
+                    if (bet.game.actual==false) {
+                        first.innerHTML=bet.firstGoals;
+                        second.innerHTML=bet.secondGoals;
+                    }else{
+                        first.placeholder=bet.firstGoals;
+                        second.placeholder=bet.secondGoals;
+                    }
+                    betted=true;
+                }
+            })
+            if (betted==false) {
+                if (game.actual==false) {
+                    first.innerHTML="-";
+                    second.innerHTML="-";
+                }else{
+                    first.placeholder="-";
+                    second.placeholder="-";
+                }
+            }
+        })
+    }
+    changeGroup();
+</script>
+<%- include ../../../views/parts/footer %>

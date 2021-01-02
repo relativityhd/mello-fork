@@ -1,0 +1,14 @@
+<% var user=user; var changetheme=true; var title="Change Theme"; var designFolder=theme%>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<link rel="stylesheet"  href="../themes/standart/css/settings.css">
+<link rel="stylesheet"  href="../themes/<%= typeof designFolder != 'undefined' ? designFolder : 'standart' %>/css/settings.css">
+    <div class="MELLO_regbody">
+        <h6>Some Themes may not translate all pages correctly!</h6>
+        <% themes.forEach(function(Theme) {%>
+            <form action="<%=paths.changeTheme%>" method="post">
+                <input class="MELLO_theme" type="submit" name="selectedTheme" value="<%= Theme %>">
+            </form>
+        <%});%>
+    </div>
+<%- include ../parts/footer %>

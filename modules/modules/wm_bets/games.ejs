@@ -1,0 +1,44 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<%games.forEach (function (game) {%>
+<div class="WM_gameWrapper">
+    <div class="WM_backgroundImages">
+        <% if (game.teams[0]&&game.teams[1]) {%>
+        <div class="WM_image" style="background-image:url(<%= game.teams[0].flag%>)"></div>
+        <div class="WM_image" style="background-image:url(<%= game.teams[1].flag%>)"></div>
+        <%}else{%>
+        <div class="WM_imagePlaceholder"></div>
+        <%}%>
+    </div>
+    <div class="WM_infoWrapper">
+        <p class="WM_stadium"><%= game.place%></p>
+        <% if (game.teams[0]&&game.teams[1]) {%>
+        <h6 class="WM_teams"><%= game.teams[0].land%> <%= game.firstGoals%> : <%= game.secondGoals%> <%= game.teams[1].land%></h6>
+        <%}else{%>
+        <h6 class="WM_teams">TBC <%= game.firstGoals%> : <%= game.secondGoals%> TBC</h6>
+        <%}%>
+        <p class="WM_group"><%= game.type%></p>
+        <p class="WM_date" id="<%= game._id%>Date"></p>
+    </div>
+</div>
+<%})%>
+<script src="/modulesCSS/wm_bets/moment.js"></script>
+<script>
+    var games=<%-JSON.stringify(games)%>;
+    games.forEach(function(game){
+        var e=document.getElementById(game._id+"Date");
+        var gameMoment=moment(game.date).format('MMMM Do, H:mm');
+        e.innerHTML=gameMoment;
+    })
+</script>
+<br>
+<br>
+<%- include ../../../views/parts/footer %>

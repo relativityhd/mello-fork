@@ -1,0 +1,73 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<h3>Change Game</h3>
+
+<form class="WM_smallbody" action="<%= paths.Modules.Modules%>/football-wm-betting-game/editGame" method="post">
+    <h3>Enter the Goals!</h3>
+    <input class="WM_editSubmit" type="submit" value="save Goals">
+    <div class="WM_shadingEdit">
+        <table class="WM_editTable">
+            <tr class="WM_tableEditHead">
+                <th></th>
+                <th class="WM_tableHeadLeft">First Team</th>
+                <th class="WM_tableHeadCenter">Goals</th>
+                <th>:</th>
+                <th class="WM_tableHeadCenter">Goals</th>
+                <th class="WM_tableHeadRight">Second Team</th>
+                <th></th>
+            </tr>
+            <% actualgames.forEach(function(game){ %>
+                <tr>
+                    <% if (game.teams[0]&&game.teams[1]) {%>
+                    <th>
+                        <div class="WM_pictureDIV">
+                            <img class="WM_picture" src="<%= game.teams[0].flag%>">
+                        </div>
+                    </th>
+                    <th class="WM_tableLeft"><%= game.teams[0].land %></th>
+                    <th class="WM_tableTipCenter"><input class="WM_input" type="number" name="<%= game._id%>_firstGoals" id="<%= game._id%>_firstGoals" placeholder="<%= game.firstGoals%>"></th>
+                    <th>:</th>
+                    <th class="WM_tableTipCenter"><input class="WM_input" type="number" name="<%= game._id%>_secondGoals" id="<%= game._id%>_secondGoals" placeholder="<%= game.secondGoals%>"></th>
+                    <th class="WM_tableRight"><%= game.teams[1].land %></th>
+                    <th>
+                        <div class="WM_pictureDIV">
+                            <img class="WM_picture" src="<%= game.teams[1].flag%>">
+                        </div>
+                    </th>
+                    <%}else{%>
+                    <th>
+                        <div class="WM_pictureDIV">
+                            <img class="WM_picture" src="/modulesCSS/wm_bets/notcalced.jpg">
+                        </div>
+                    </th>
+                    <th class="WM_tableLeft">TBC</th>
+                    <th class="WM_tableTipCenter"><input class="WM_input" type="number" name="<%= game._id%>_firstGoals" id="<%= game._id%>_firstGoals"></th>
+                    <th>:</th>
+                    <th class="WM_tableTipCenter"><input class="WM_input" type="number" name="<%= game._id%>_secondGoals" id="<%= game._id%>_secondGoals"></th>
+                    <th class="WM_tableRight">TBC</th>
+                    <th>
+                        <div class="WM_pictureDIV">
+                            <img class="WM_picture" src="/modulesCSS/wm_bets/notcalced.jpg">
+                        </div>
+                    </th>
+                    <%}%>
+                </tr>
+            <%})%>
+        </table>
+    </div>
+    <input class="WM_editSubmit" type="submit" value="save Goals">
+    <br>
+</form>
+
+<hr>
+<form action="<%= paths.Modules.Modules%>/football-wm-betting-game/calcStandings" method="post"><label for="calcStands">Calculate standings</label><input name="calcStands" type="submit" value="calculate standings"></form>
+<form action="<%= paths.Modules.Modules%>/football-wm-betting-game/calcKickoffs" method="post"><label for="calckicks">Calculate kickoffs</label><input name="calcKicks" type="submit" value="calculate kickoffs"></form><br><br>
+<%- include ../../../views/parts/footer %>

@@ -1,0 +1,233 @@
+html {
+  font-family: sans-serif !important;
+  padding: 1%;
+  height: 96%;
+}
+
+body {
+  height: 96%;
+}
+
+footer {
+  float: right;
+  bottom: 0%;
+  width: 100%;
+}
+
+header {
+  padding-bottom: 1%;
+}
+
+h1 {
+  color: #233;
+  font-family: "Lucida Sans Unicode";
+  font-size: 40px;
+  font-variant: small-caps;
+}
+
+h2 {
+  /* Is for Errors*/
+  color: #b26;
+  font-family: "Lucida Sans Unicode";
+  font-size: 20px;
+  margin-top: -5px;
+  margin-bottom: 0px;
+}
+
+h3 {
+  color: #233;
+  font-family: "Lucida Sans Unicode";
+  font-size: 32px;
+}
+
+h4 {
+  color: #2b6;
+  font-family: "Lucida Sans Unicode";
+  font-size: 20px;
+  margin-top: -5px;
+  margin-bottom: 0px;
+}
+
+h6 {
+  color: #233;
+  font-family: "Lucida Sans Unicode";
+  font-size: 20px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #cdd;
+}
+
+a {
+  font-family: "Lucida Sans Unicode" !important;
+  font-variant: small-caps !important;
+  font-size: 25px;
+  text-decoration: none !important;
+  color: #35b2e8;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px !important;
+}
+
+a[class="MELLO_unselected"]:hover,
+a[class="MELLO_selected"]:hover {
+  background-color: rgba(120, 130, 130, 0.5);
+  color: #25a2d8;
+}
+
+a[class="MELLO_selected"] {
+  color: #052238;
+}
+
+a[class="MELLO_linked"] {
+  color: #677;
+  font-size: 32px;
+}
+
+a[class="MELLO_footer"] {
+  font-size: 15px;
+  background-color: transparent;
+}
+
+nav[class="MELLO_head"] {
+  float: right;
+  margin-top: 1.5%;
+}
+
+nav[class="MELLO_foot"] {
+  margin-top: -1%;
+}
+
+input {
+  border: 1px solid #233;
+  border-radius: 3px;
+  font-size: 22px;
+  color: #223;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+input:focus {
+  border-color: #35b2e8 !important;
+  background-color: #eee;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="button"] {
+  width: 100%;
+}
+
+input[type="button"],
+input[type="date"] {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: transparent;
+}
+
+input[type="button"]:hover,
+input[type="date"]:hover,
+input[type="file"]:hover,
+input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: rgba(140, 140, 140, 0.5);
+  border-color: #35b2e8;
+}
+
+input[type="checkbox"]:not(old),
+input[type="radio"]:not(old) {
+  width: 28px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+input[type="checkbox"]:not(old) + label,
+input[type="radio"]:not(old) + label {
+  display: inline-block;
+  margin-left: -28px;
+  padding-left: 28px;
+  background: url("../pics/checks.png") no-repeat 0 0;
+  line-height: 24px;
+}
+
+input[type="checkbox"]:not(old):checked + label {
+  background-position: 0 -24px;
+}
+
+input[type="radio"]:not(old):checked + label {
+  background-position: 0 -48px;
+}
+
+textarea {
+  border: 1px solid #233;
+  border-radius: 3px;
+  font-size: 18px;
+  color: #223;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+textarea:focus {
+  border-color: #35b2e8 !important;
+  background-color: #eee;
+}
+
+button {
+  border: 1px solid #233;
+  border-radius: 3px;
+  font-size: 20px;
+  width: 100%;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: transparent;
+  color: #223;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgba(140, 140, 140, 0.5);
+  border-color: #35b2e8;
+}
+
+label,
+p {
+  font-size: 20px;
+  font-family: "Lucida Sans Unicode";
+  color: #233;
+}
+
+p[class="MELLO_centered"] {
+  text-align: center;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+p[class="MELLO_small"] {
+  font-size: 13px;
+}

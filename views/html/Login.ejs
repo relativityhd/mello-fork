@@ -1,0 +1,11 @@
+<% var user=user; var login=true; var title="Log In";%>
+<%- include ../parts/headerLogin%>
+<%- include ../parts/importDesignLogin %>
+            <form class="MELLO_regbody" method="post" action="<%= paths.login %>">
+                <h3>Login</h3>
+                <% if (credentials != "") { %><h2><%= credentials %></h2><% } %>
+                <input name="username" type="text" placeholder="Enter your Name"                <% if (usernameSpaceholder != "") { %>value="<%= usernameSpaceholder %>"<% } %>>
+                <input name="password" type="password" placeholder="Enter your Password"        <% if (passwordSpaceholder != "") { %>value="<%= passwordSpaceholder %>"<% } %>>
+                <button>Login</button>
+            </form>
+<%- include ../parts/footerLogin %>

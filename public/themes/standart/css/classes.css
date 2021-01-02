@@ -1,0 +1,154 @@
+.MELLO_container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
+
+@media (min-width: 1568px) {
+  .MELLO_container {
+    max-width: 1530px;
+  }
+}
+
+.MELLO_regbody {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  padding-bottom: 20%;
+}
+
+@media (min-width: 768px) {
+  .MELLO_regbody {
+    max-width: 730px;
+  }
+}
+
+.MELLO_body {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  padding-bottom: 20%;
+}
+
+@media (min-width: 1368px) {
+  .MELLO_body {
+    max-width: 1330px;
+  }
+}
+
+.MELLO_profilepic {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 50%;
+  border-color: #233;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.MELLO_background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: url("../pics/white-wallpaper20.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: brightness(2);
+}
+
+.MELLO_menuBar {
+  display: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #233;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin-top: -1px;
+  position: fixed;
+  z-index: 3;
+}
+
+.MELLO_menuLabel {
+  font-family: "Lucida Sans Unicode";
+  font-variant: small-caps;
+  font-size: 25px;
+  text-decoration: none;
+  color: #35b2e8;
+  padding-left: 15px;
+  padding-right: 100px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.MELLO_menu {
+  float: right;
+  margin-top: 0%;
+  z-index: 2;
+}
+
+.MELLO_inMenu {
+  font-family: "Lucida Sans Unicode";
+  font-size: 25px;
+  text-decoration: none;
+  color: #233;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  z-index: 3;
+}
+
+.MELLO_uploadLabel {
+  border: 1px solid #233;
+  border-radius: 3px;
+  font-size: 20px;
+  width: 100%;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: transparent;
+  color: #223;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.MELLO_uploadLabel:hover {
+  cursor: pointer;
+  background-color: rgba(140, 140, 140, 0.5);
+  border-color: #35b2e8;
+}
+
+.MELLO_bio {
+  border: 1px solid #233;
+  border-radius: 3px;
+  font-size: 22px;
+  color: black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: transparent;
+  width: 100%;
+}
+
+.MELLO_bio:focus {
+  border-color: #35b2e8 !important;
+  background-color: transparent;
+}

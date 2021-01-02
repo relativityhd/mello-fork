@@ -1,0 +1,25 @@
+<% var user=user; var modules=true; var title="Modules"; var designFolder=theme%>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+    <link rel="stylesheet"  href="../themes/standart/css/module.css">
+    <link rel="stylesheet"  href="../themes/<%= typeof designFolder != 'undefined' ? designFolder : 'standart' %>/css/module.css">
+            <div class="MELLO_body">
+                <h3>Get new modules from the store!</h3>
+                <a class="MELLO_linked" href="<%= paths.abomodule %>">Store</a>
+                <hr>
+                <h3>Your modules</h3>
+                <div>
+                <% if (userModules.length==0) { %>
+                    <h2>You have not yet subscribed to any modules</h2>
+                <%}%>
+                    <div class="MELLO_linkModules">
+                    <% userModules.forEach(function(module){%>
+                        <form action="<%= module_paths[module] %>" method="get">
+                        <input class="MELLO_linkModule" type="submit" value="<%= module %>">
+                        </form>
+
+                    <% }); %>
+                    </div>
+                </div>
+            </div>
+<%- include ../parts/footer %>

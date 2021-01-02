@@ -1,0 +1,221 @@
+<% var user=isAuth; var profile=true;  var title="Profile"; var designFolder=thisUser.design_theme%>
+<%- include ../parts/header %>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet"  href="/themes/standart/css/profile.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%- include ../parts/importDesign %>
+<div class="PROFILE_body">
+    
+    
+    <div class="PROFILE_bannerWrapper">
+        
+        <form action="<%= paths.profileBanner %>" method="post" enctype="multipart/form-data">
+            <div class="PROFILE_banner">
+                <input name="banner" id='bannerElem' type="file" onchange="handleBanner(this.files)" style="display:none">
+                <div class="PROFILE_uploadLabelBanner" id="bannerSelect">
+                    <% if (banner) {%>
+                    <img class="PROFILE_bannerImage" src="/profile/picture/<%= banner.filename %>" id="bannerImg" draggable="false">
+                    <div class="PROFILE_addToBanner">
+                        <i class="material-icons md-48">panorama</i>
+                    </div>
+                    <%}else{%>
+                    <img class="PROFILE_bannerImage" id="bannerImg" draggable="false">
+                    <div class="PROFILE_addToBanner">
+                        <i class="material-icons md-48">panorama</i>
+                    </div>
+                    <%}%>
+                </div>
+                <h2><%= typeof msg != 'undefined' ? msg : '' %></h2>
+                <input type="submit" name="apply" style="display:none" id="bannerSubmit">
+            </div>
+        </form>
+        <script src="js/uploadBanner.js"></script>
+        
+        <div class="PROFILE_infoWrapper">
+            <p class="PROFILE_username"><%= thisUser.username %></p>
+            <p class="PROFILE_name"><%= thisUser.firstname %></p>
+            <p class="PROFILE_name"><%= thisUser.secondname %></p>
+            <p class="PROFILE_name"><%= thisUser.lastname %></p>
+            <div class="PROFILE_infoIcon">
+                <i class="material-icons md-36">info</i>
+                <div class="PROFILE_infosWrapper">
+                    <div class="PROFILE_infosBIO">
+                        <p class="PROFILE_infosLabel">biography:</p>
+                        <% if(thisUser.biography) {%>
+                            <p class="PROFILE_infos"><%= thisUser.biography %></p>
+                        <%}else{%>
+                            <h2 class="PROFILE_infos">This User has no Biography</h2>
+                        <%} %>
+                    </div><br>
+                    <p class="PROFILE_infosLabel">birthday: </p>
+                    <% if(thisUser.birthday) {%>
+                        <p class="PROFILE_infos"><%= thisUser.birthday %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">sex: </p>
+                    <% if(thisUser.sex) {%>
+                        <p class="PROFILE_infos"><%= thisUser.sex %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">email: </p>
+                    <% if(thisUser.email) {%>
+                        <p class="PROFILE_infos"><%= thisUser.email %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">tel.: </p>
+                    <% if(thisUser.tel) {%>
+                        <p class="PROFILE_infos"><%= thisUser.tel %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                    <p class="PROFILE_infosLabel">mobile: </p>
+                    <% if(thisUser.mob) {%>
+                        <p class="PROFILE_infos"><%= thisUser.mob %></p><br>
+                    <%}else{%>
+                        <h2 class="PROFILE_infos">No data</h2><br>
+                    <%} %>
+                </div>
+            </div>
+        </div>
+        
+        <div class="PROFILE_pictureWrapper">
+            <form action="<%= paths.profileAvatar %>" method="post" enctype="multipart/form-data">
+                <div class="PROFILE_picture">
+                    <input name="file" id='fileElem' type="file" onchange="handleFile(this.files)" style="display:none">
+                    <div class="PROFILE_uploadLabelPicture" id="fileSelect">
+                        <img class="PROFILE_pictureImage" src="/profile/picture/<%= profilepic.filename %>" id="prevImg" draggable="false">
+                        <div class="PROFILE_addToPicture">
+                            <i class="material-icons md-36">photo</i>
+                        </div>
+                    </div>
+                    <h2><%= typeof msg != 'undefined' ? msg : '' %></h2>
+                    <input type="submit" name="apply" style="display:none" id="fileSubmit">
+                </div>
+            </form>
+            <script src="js/uploadPicture.js"></script>
+        </div>
+        
+        <form class="PROFILE_galleryWrapper" action="<%= paths.profileGallery %>" method="post" enctype="multipart/form-data">
+            <input name="gallery" id='galleryElem' type="file" value="Choose you Profile Picture" onchange="handleGallery(this.files)" style="display:none">
+            <div class="PROFILE_uploadGallery" id="gallerySelect">
+                <img class="PROFILE_gallerypic" id="galleryImg" draggable="false" style="display:none">
+                <label class="PROFILE_addToGallery">
+                    <i class="material-icons md-24">add_photo_alternate</i>Add Picture
+                </label>
+            </div>
+            <h2><%= typeof msg != 'undefined' ? msg : '' %></h2>
+            <input id="gallerySubmit" style="display:none" type="submit">
+        </form>
+        <script src="js/uploadGallery.js"></script>
+        
+    </div>
+    
+    
+    <div class="PROFILE_gallery">
+        <% if (gallery.length) {%>
+        <% gallery.forEach(function(picture){%>
+            <form class="PROFILE_galleryPictureWrapper" action="/profile/delete/<%= picture.filename %>/<%= thisUser._id %>" method="post">
+                <button class="PROFILE_deleteGalleryPicture">
+                    <i class="material-icons md-18">delete</i>
+                </button>
+                <img class="PROFILE_galleryPicture" src="/profile/picture/<%= picture.filename %>" draggable="false">
+            </form>
+        <%})%>
+        <%}else{ %>
+            <h2>You haven't upoaded pictures yet!</h2>
+        <%}%>
+    </div>
+    
+    <div class="PROFILE_friends">
+        <h3>friends</h3>
+        <% if (thisUser.friends.length==0) {%>
+            <h2>You have no friends.</h2>
+        <%}%>
+        <% thisUser.friends.forEach(function(friend){ %>
+            <div class="PROFILE_userWrapper">
+                <form class="PROFILE_formWrapper" action="<%= paths.profilesite %>/<%= friend.username %>" method="get">
+                    <button class="PROFILE_pseudoButton">
+                        <% if (friendspics[friend._id]) { %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/<%= friend._id %>" draggable="false">
+                        <% }else{ %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/standardAvatar" draggable="false">
+                        <% } %>
+                        <div class="PROFILE_userInfoWrapper">
+                            <p class="PROFILE_userUsername"><%= friend.username %></p>
+                            <p class="PROFILE_userName"><%= friend.firstname %> <%= friend.secondname %> <%= friend.lastname %></p>
+                        </div>
+                    </button>
+                </form>
+                <form class="PROFILE_userEnd" action="<%= paths.profilesite %>/end_friendship/<%= friend._id %>" method="post">
+                    <button class="PROFILE_userButton">
+                        <i class="material-icons md-18">clear</i><p class="PROFILE_smallFont">break-up</p>
+                    </button>
+                </form>
+            </div>
+        <% }) %>
+        <% if (thisUser.friends_requests.length!=0) { %>
+        <hr>
+        <h3>friend requests</h3>
+        <% thisUser.friends_requests.forEach(function(friend){ %>
+            <div class="PROFILE_userWrapper">
+                <form action="<%= paths.profilesite %>/<%= friend.username %>" method="get">
+                    <button class="PROFILE_pseudoButton">
+                        <% if (friendspics[friend._id]) { %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/<%= friend._id %>" draggable="false">
+                        <% }else{ %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/standardAvatar" draggable="false">
+                        <% } %>
+                        <div class="PROFILE_userInfoWrapper">
+                            <p class="PROFILE_userUsername"><%= friend.username %></p>
+                            <p class="PROFILE_userName"><%= friend.firstname %> <%= friend.secondname %> <%= friend.lastname %></p>
+                        </div>
+                    </button>
+                </form>
+                <form class="PROFILE_userHalf" action="<%= paths.profilesite %>/accept_friendship/<%= friend._id %>" method="post">
+                    <button class="PROFILE_userButtonStart">
+                            <i class="material-icons md-18">add</i><p class="PROFILE_smallFont">accept</p>
+                    </button>
+                </form>
+                <form class="PROFILE_userHalf" action="<%= paths.profilesite %>/decline_friendship/<%= friend._id %>" method="post">
+                    <button class="PROFILE_userButton">
+                            <i class="material-icons md-18">clear</i><p class="PROFILE_smallFont">decline</p>
+                    </button>
+                </form>
+            </div>
+        <% }) %>
+        <% } %>
+        <% if (thisUser.friends_inquiries.length!=0) { %>
+        <hr>
+        <h3>friend inquiries</h3>
+        <% thisUser.friends_inquiries.forEach(function(friend){ %>
+            <div class="PROFILE_userWrapper">
+                <form action="<%= paths.profilesite %>/<%= friend.username %>" method="get">
+                    <button class="PROFILE_pseudoButton">
+                        <% if (friendspics[friend._id]) { %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/<%= friend._id %>" draggable="false">
+                        <% }else{ %>
+                            <img class="PROFILE_userPicture" src="/profile/picture/standardAvatar" draggable="false">
+                        <% } %>
+                        <div class="PROFILE_userInfoWrapper">
+                            <p class="PROFILE_userUsername"><%= friend.username %></p>
+                            <p class="PROFILE_userName"><%= friend.firstname %> <%= friend.secondname %> <%= friend.lastname %></p>
+                        </div>
+                    </button>
+                </form>
+                <form class="PROFILE_userEnd" action="<%= paths.profilesite %>/revoke_friendship/<%= friend._id %>" method="post">
+                    <button class="PROFILE_userButton">
+                            <i class="material-icons md-18">clear</i><p class="PROFILE_smallFont">revoke</p>
+                    </button>
+                </form>
+            </div>
+        <% }) %>
+        <% } %>
+    </div>
+</div>
+<br>
+<br>
+<%- include ../parts/footer %>

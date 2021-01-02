@@ -1,0 +1,161 @@
+<% var user=user; var designFolder=theme%>
+	<%- include ../../../views/parts/header %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+ <%- include ../../../views/parts/importDesign %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo-list</title>
+</head>
+<style>
+.schrift{
+	
+	text-align: center !important ;
+	font-size: 2.5rem;
+	margin-bottom: .5rem;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.1;
+	color: #233;
+	font-variant: normal !important ;
+	
+}
+	.section {
+    padding: 1rem 1.5rem;
+}
+	#w{
+	
+	padding-bottom: 4rem;
+}
+	.knopf{
+		float: left;
+		
+	}
+	
+	.loeschen{
+		font-size: 50% !important;	
+	}
+	
+	#t{
+		opacity: 1;
+	}
+	.knopf1{
+		margin-right: 5%;
+		margin-left: 5%;
+		width: 90%;
+	}
+	
+	
+</style>
+<section class="section">
+        
+            <div class="container">
+                <h1 class="schrift">
+                    ToDo-List
+                </h1>
+				
+            </div>
+         </section>
+<body>
+   <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+					<% if (error != ""){%><h2><%= error %></h2><% } %>
+                   <form  method="post">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" name="inhalt" type="text" placeholder="what you have to do...">
+                            </div>
+                            <div class="control">
+                                <button class="button is-info">
+                                    Add it
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="section" id= "w">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                   <% for(var i = ToDos.length-1 ; i >= 0; i--) { %>
+						<div id="<%= ToDos[i].inhalt %>">
+					 		<div class="box">
+                        		<article class="media">
+									<div class = "knopf">
+										<input class = "loeschen" type = "submit" value = "Löschen" onclick="init('<%= ToDos[i].inhalt %>')"  >
+									</div>
+									<div class = "knopf1">
+										<p class = "inhalt"><%= ToDos[i].inhalt %> </p>
+									</div>
+									<div class = "ww">
+										<input type="checkbox" id = "t" onchange="tick('<%=ToDos[i].ticked%>','<%= ToDos[i].inhalt %>')" <%=ToDos[i].ticked%> >
+									</div>
+								</article>
+							</div>
+						</div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+	</script>
+<script>
+	var socket = io.connect('http://<%=paths.url%>:9167');
+		var id = "<%=_user._id %>";
+	if(socket !== undefined){
+		
+		console.log('Connected to socket...');
+		//console.log(city);
+		
+					
+	
+              
+		}else{
+			console.log('Connected not to socket...');
+		}
+		
+function init(inhalt){
+	console.log(inhalt);
+	console.log(id);
+	socket.emit('TODO_inhalte',{
+		inhalt:inhalt,
+		id: id
+							
+    });
+			var e = document.getElementById(inhalt);
+				e.innerHTML = '';
+	
+	
+}	
+
+function tick(todo, inhalt){
+	console.log(todo);
+	console.log(inhalt);
+	if (todo ==""|| todo == undefined){
+		var ticks = "checked";
+	} else {
+		var ticks = "";
+	};
+		console.log(ticks);
+		console.log(id);
+	socket.emit('TODO_ticked',{
+		id:id ,
+		ticked: ticks,
+		inhalt: inhalt
+	});
+}
+	
+	
+	</script>
+	
+	
+	<%- include ../../../views/parts/footer %>
+	
+	

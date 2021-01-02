@@ -1,0 +1,9 @@
+---
+applications:
+  - name: mello
+    buildpacks:
+      - https://github.com/cloudfoundry/nodejs-buildpack
+    routes:
+      - route: mello.eu-de.mybluemix.net
+    memory: 128M
+    FORCE_HTTPS: true

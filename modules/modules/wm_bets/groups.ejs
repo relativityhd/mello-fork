@@ -1,0 +1,42 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<% wm_groups.forEach(function(group){ %>
+    <div class="WM_groupTable">
+        <h6><%= group.name%></h6>
+        <table>
+            <tr class="WM_tableHead">
+                <th class="WM_tableHeadLeftBig"></th>
+                <th class="WM_tableHeadLeftBig"></th>
+                <th class="WM_tableHeadLeftBig">Team</th>
+                <th class="WM_tableHeadLeftBig">Goals</th>
+                <th class="WM_tableHeadLeftBig">Points</th>
+            </tr>
+            <% var n=1 %>
+            <% group.teams.forEach(function(team){ %>
+                <tr>
+                    <th class="WM_tableLeftBig"><%=n%>.</th>
+                    <th>
+                        <div class="WM_pictureDIV">
+                            <img class="WM_picture" src="<%= team.flag%>">
+                        </div>
+                    </th>
+                    <th class="WM_tableLeftBig"><%=team.land%></th>
+                    <th class="WM_tableLeftBig"><%=team.goals%>:<%=team.antigoals%></th>
+                    <th class="WM_tableLeftBig"><%=team.points%></th>
+                </tr>
+                <% n++ %>
+            <% }) %>
+        </table>
+    </div>
+<% }) %>
+<br>
+<br>
+<%- include ../../../views/parts/footer %>

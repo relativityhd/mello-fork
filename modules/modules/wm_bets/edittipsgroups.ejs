@@ -1,0 +1,41 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<hr>
+<div class="WM_body">
+    <a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips-table">Edit as Table</a>
+    <br>
+    <br>
+    <h3>Select a Worldcup Group!</h3>
+    <div class="WM_tipGroups">
+    <% var n=0; %>
+    <% wm_groups.forEach(function(group) {%>
+        <form class="WM_tipGroup" action="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips/<%=group.name%>" method="get">
+            <button class="WM_tipGroupII">
+                <h3 class="WM_tipGroupName"><%=group.name%></h3>
+                <table class="WM_tipGroupIII">
+                    <% group.teams.forEach(function(team){ %>
+                        <% if (team!=null) {%>
+                        <tr class="WM_tipGroupIII">
+                            <th>
+                                <div class="WM_pictureDIV">
+                                    <img class="WM_picture" src="<%= team.flag%>">
+                                </div>
+                            </th>
+                            <th class="WM_tableLeftBig"><%=team.land%></th>
+                        </tr>
+                    <% }}) %>
+                </table>
+            </button>
+        </form>
+    <%})%>
+    </div>
+</div>
+<br>
+<%- include ../../../views/parts/footer %>

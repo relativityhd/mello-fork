@@ -1,0 +1,35 @@
+<% var user=user; var title="About you";%>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin %>
+<style>
+				.MELLO_container{
+				height:auto; 
+				}
+			</style>
+ <div class="MELLO_regbody">
+        <h3>About You</h3>
+        <form class="MELLO_body" action="<%= paths.registration2 %>" method="post">
+			<label>First Name</label><br>			
+			<input name="firstname" type="text" placeholder="First Name" ><br>
+			<label>Second Name</label><br>
+        	<input name="secondname" type="text" placeholder="Second Name" ><br>
+			<label>Last Name</label><br>
+        	<input name="lastname" type="text" placeholder="Last Name" ><br>
+			<label>Biography</label><br>
+        	<textarea class="MELLO_bio" name="bio" cols="40" rows="5" placeholder="Biography"></textarea><br>
+        	<label>Birthday</label><br>
+			<input name="birthday" type="date" ><br>
+			<label>Tel.</label><br>
+        	<input name="telnumber" type="tel" placeholder="Telfone Number" ><br>
+			<label>Mobilephone</label><br>
+        	<input name="mobnumber" type="tel" placeholder="Mobile Number" ><br>
+			
+			<label>Gender</label><br>
+			<input id="male" name="sex" type="radio" value="male" ><label for="male">Male</label>
+            <input id="female" name="sex" type="radio" value="female" ><label for="female">Female</label>
+            <input id="other" name="sex" type="radio" value="other"><label for="other">Other</label>
+
+            <button>Continue</button>
+      	</form>
+</div>
+<%- include ../parts/footerLogin %>

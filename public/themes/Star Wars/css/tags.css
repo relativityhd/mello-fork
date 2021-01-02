@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "Insomnia";
+  src: url("../fonts/Insomnia.ttf") format("truetype");
+}
+
+header {
+  margin-top: -1.5%;
+}
+
+h1 {
+  color: #332;
+  font-family: "Insomnia";
+  font-weight: 700;
+}
+
+h2 {
+  /* Is for Errors*/
+  font-family: "Insomnia";
+}
+
+h3 {
+  color: #332;
+  font-family: "Insomnia";
+  font-weight: 700;
+}
+
+h4 {
+  font-family: "Insomnia";
+}
+
+h6 {
+  color: #332;
+  font-family: "Insomnia";
+  font-weight: 700;
+}
+
+hr {
+  border-top: 1px solid transparent;
+}
+
+a {
+  font-family: "Insomnia" !important;
+  color: #d9a602;
+}
+
+a[class="MELLO_unselected"]:hover,
+a[class="MELLO_selected"]:hover {
+  color: #a96602;
+  background: transparent;
+}
+
+a[class="MELLO_selected"] {
+  color: #a96602;
+}
+
+a[class="MELLO_linked"] {
+  color: #f9a602;
+  font-size: 50px;
+  margin-top: 2%;
+}
+
+input {
+  border: 1px solid #332;
+  color: #332;
+  background-color: rgba(255, 200, 100, 0.1);
+}
+
+input:focus {
+  border-color: #d9a602 !important;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+input[type="button"]:hover,
+input[type="date"]:hover,
+input[type="file"]:hover,
+input[type="submit"]:hover {
+  border-color: #d9a602;
+}
+
+textarea {
+  border: 1px solid #332;
+  color: #332;
+  background-color: rgba(255, 200, 100, 0.1);
+}
+
+textarea:focus {
+  border-color: #d9a602 !important;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+button {
+  border: 1px solid #332;
+  font-family: "Insomnia";
+  color: #332;
+}
+
+button:hover {
+  border-color: ##d9a602;
+}
+
+label,
+p {
+  font-family: "Insomnia";
+  color: #332;
+}

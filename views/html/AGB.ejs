@@ -1,0 +1,24 @@
+<% var user=user; var title="AGB"; var designFolder=theme%>
+<% if(user) { %>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<% } else { %>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin%>
+<% } %>
+<div class="MELLO_regbody">
+    <h1>Our Terms of use</h1>
+    <h2>We made our own Terms of use, they are NOT signed by a loyer.</h2>
+    <hr>
+    <p class="MELLO_small">Translated by Deepl</p>
+    <p>
+        This website was created as a school project. Our concept differs only slightly from concepts of other websites. Therefore, everyone is free to use our concept as his own. However, the implementation of this concept remains under review and we reserve the right not to disclose it ourselves during a legal dispute. <br>
+        Since the Internet is still a legal vacuum, at least due to its lack of national classification, we reserved the right to decide which user activities are not tolerable and to take action against them. (e.g. hate writing in the chats or uploading inappropriate pictures)<br>
+        Since the user on our site uploads virtual data from his local device to our server, i.e. stores a copy of his data on our server, we claim this data on our server. These are not passed on to third parties, but the user cannot ask us to delete these data, which were voluntarily stored on our server.<br>
+    </p>
+</div>
+<% if(user) { %>
+<%- include ../parts/footer %>
+<% } else { %>
+<%- include ../parts/footerLogin %>
+<% } %>

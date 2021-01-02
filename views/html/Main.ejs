@@ -1,0 +1,24 @@
+<% var user=user; var title="Hello"; var designFolder=theme%>
+<% if(user) { %>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<% } else { %>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin%>
+<% } %>
+            <div class="MELLO_body">
+                <h3>Our Main Site</h3>
+                <% if(! user) { %>
+                <form action="<%= paths.login %>" method="get">
+                    <button>Login</button>
+                </form>
+                <form action="<%= paths.registration1 %>" method="get">
+                    <button>Register</button>
+                </form>
+                <% } %>
+            </div>
+<% if(user) { %>
+<%- include ../parts/footer %>
+<% } else { %>
+<%- include ../parts/footerLogin %>
+<% } %>

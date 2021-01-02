@@ -1,0 +1,78 @@
+<% var user=user; var usersettings=true; var title="Usersettings"; var designFolder=theme%>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<link rel="stylesheet"  href="../themes/standart/css/settings.css">
+<link rel="stylesheet"  href="../themes/<%= typeof designFolder != 'undefined' ? designFolder : 'standart' %>/css/settings.css">
+<link rel="stylesheet"  href="../css/settings.css">
+<div class="MELLO_regbody">
+    <h3>Here you can change your user settings!</h3>
+    <% if (saved == 'saved') {%>
+    <h4>Your changes successfully saved</h4>
+    <%}%>
+
+    <% if (saved == 'wrong') {%>
+        <h4>Wrong passsword!</h4>
+    <%}%>
+
+    <% if (saved == 'mc') {%>
+        <h4>Not all gaps in the password change section were filled!</h4>
+    <%}%>
+
+    <% if (saved == 'nm') {%>
+        <h4>Passwords do not match!</h4>
+    <%}%>
+
+    <% if(err!="") {%>
+        <h2><%=err%></h2>
+    <%}%>
+    <hr>
+    
+    <h3>Username: <%= username %></h6>
+    <h6>Change your picture</h3>
+    <form action="<%= paths.settingsUpload %>" method="post" enctype="multipart/form-data">
+        <input name="file" id='fileElem' type="file" value="Choose you Profile Picture" onchange="handleFile(this.files)" style="display:none"><br><br>
+        <label class="MELLO_uploadLabel" id="fileSelect"><img id="prevImg" class="MELLO_profilepic" src="/registration/avatar/<%= file.filename %>">Select your Profilepicture</label>
+        <h2><%= typeof msg != 'undefined' ? msg : '' %></h2>
+        <br>
+        <input type="submit" name="apply" value="upload Profilepicture">
+    </form>
+    <form action="<%= paths.settings%>" method="post">
+        <p>or</p>
+        <input type="submit" name="apply" value="delete Profilepicture"><br>
+        <input type="submit" name="apply" value="delete Banner">
+    </form>
+    <script src="js/uploadPicture.js"></script>
+    <hr>
+    <form action="<%= paths.settings%>" method="post">
+        <h6>Change your information</h6>
+        <input name="email" type="email" placeholder="e-mail" value="<%= email %>">
+        <input name="firstname" type="text" placeholder="first name" value="<%= userdata.firstname %>">
+        <input name="secondname" type="text" placeholder="sedecond name" value="<%= userdata.secondname %>">
+        <input name="lastname" type="text" placeholder="last name" value="<%= userdata.lastname %>">
+        <textarea class="MELLO_bio" name="bio" cols="40" rows="5" placeholder="biography"><%= userdata.biography %></textarea>
+        
+        <br>
+        
+        <label>Birthday <input name="birthday" type="date" value="<%= userdata.birthday %>"></label><br>
+        <label>telephone number <input name="telnumber" type="tel" placeholder="telephone number" value="<%= userdata.tel %>"></label><br>
+        <label>cell phone number<input name="mobnumber" type="tel" placeholder="mobile number" value="<%= userdata.mob %>"></label><br>
+        
+        <br>
+            <input id="male" name="sex" type="radio" value="male" <%= userdata.sex["male"] %>><label for="male">Male</label>
+            <input id="female" name="sex" type="radio" value="female" <%= userdata.sex["female"] %>><label for="female">Female</label>
+            <input id="other" name="sex" type="radio" value="other" <%= userdata.sex["other"] %>><label for="other">Other</label>
+        <br>
+        
+        <input type="submit" name="apply" value="apply Changes">
+    </form>
+    <hr>
+    <form action="<%= paths.settings%>" method="post">
+        <h6>Change your password</h6>
+        <input name="oldpassword" type="password" placeholder="Old Password">
+        <input name="password" type="password" placeholder="Password">
+        <input name="password_confirm" type="password" placeholder="Confirm Password">
+        <input type="submit" name="apply" value="change Password">
+    </form>
+    <hr>
+</div>
+<%- include ../parts/footer %>

@@ -1,0 +1,17 @@
+<% var user=user; var title="About us"; var designFolder=theme%>
+<% if(user) { %>
+<%- include ../parts/header %>
+<%- include ../parts/importDesign %>
+<% } else { %>
+<%- include ../parts/headerLogin %>
+<%- include ../parts/importDesignLogin%>
+<% } %>
+<div class="MELLO_regbody">
+    <h1>Info</h1>
+    <p>Hey, this is our website. Have fun with it.</p>
+</div>
+<% if(user) { %>
+<%- include ../parts/footer %>
+<% } else { %>
+<%- include ../parts/footerLogin %>
+<% } %>

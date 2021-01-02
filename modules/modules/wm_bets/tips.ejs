@@ -1,0 +1,69 @@
+<% var user=user; var designFolder=theme; var title="Football Bets"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/wm_bets/wm_bets.css">
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/dash">Overview</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/tips">Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/edit-tips">Edit Your Tips</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/games">Games</a>
+<a href="<%= paths.Modules.Modules%>/football-wm-betting-game/wm_groups">Groups</a>
+<div class="WM_bodyInline">
+    <hr>
+    <h3>Your Tips</h3>
+    <script src="/modulesCSS/wm_bets/action.js"></script>
+    <% groups.forEach(function(group){ %>
+    <div class="WM_tipTable" onclick="WM_showTable('<%= group._id %>')" id="WM_tableDIV<%= group._id %>">
+        <a href="<%= paths.Modules.Modules%>/football-wm-betting-game/groups/<%= group.name %>"><%= group.name%></a>
+        <table class="WM_tableTip" id="WM_table<%= group._id %>">
+            <tr class="WM_tableHead" id="WM_tableHead<%= group._id %>">
+                <th></th>
+                <th class="WM_tableHeadLeft">Team 1</th>
+                <th class="WM_tableHeadLeft">Tip</th>
+                <th class="WM_tableHeadRight">Goals</th>
+                <th> : </th>
+                <th class="WM_tableHeadLeft">Goals</th>
+                <th class="WM_tableHeadRight">Tip</th>
+                <th class="WM_tableHeadRight">Team 2</th>
+                <th></th>
+            </tr>
+        <% allgames.forEach(function(game){ %>
+            <% if(game.teams[0]&&game.teams[1]) {%>
+            <tr>
+                <th>
+                    <div class="WM_pictureDIV" name="WM_pictureDIV1<%= group._id %>">
+                        <img class="WM_picture" src="<%=game.teams[0].flag%>">
+                    </div>
+                </th>
+                <th class="WM_tableLeft"><%= game.teams[0].land %></th>
+                <th class="WM_tableTipLeft"><%= firstTips[(game._id+group.name)] %></th>
+                <th class="WM_tableRight"><%= game.firstGoals %></th>
+                <th> : </th>
+                <th class="WM_tableLeft"><%= game.secondGoals %></th>
+                <th class="WM_tableTipRight"><%= secondTips[(game._id+group.name)] %></th>
+                <th class="WM_tableRight"><%= game.teams[1].land %></th>
+                <th>
+                    <div class="WM_pictureDIV" name="WM_pictureDIV2<%= group._id %>">
+                        <img class="WM_picture" src="<%= game.teams[1].flag%>">
+                    </div>
+                </th>
+            </tr>
+            <% if(game.number==16||game.number==32||game.number==48||game.number==56||game.number==60||game.number==62||game.number==63) {%>
+            <tr>
+                <th class="WM_tableHeadLeft"></th>
+                <th class="WM_tableHeadLeft"></th>
+                <th class="WM_tableHeadLeft"></th>
+                <th class="WM_tableHeadRight"></th>
+                <th class="WM_tableHeadRight"></th>
+                <th class="WM_tableHeadLeft"></th>
+                <th class="WM_tableHeadRight"></th>
+                <th class="WM_tableHeadRight"></th>
+                <th class="WM_tableHeadLeft"></th>
+            </tr>
+        <% }}}) %>
+        </table>
+    </div>
+    <%})%>
+</div>
+<br>
+<br>
+<%- include ../../../views/parts/footer %>

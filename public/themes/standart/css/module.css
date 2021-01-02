@@ -1,0 +1,133 @@
+.MELLO_addModule {
+  border-style: dashed;
+  border-color: #233;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: rgba(20, 30, 30, 0.1);
+  height: 10%;
+  width: 40%;
+  margin-bottom: -5%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.MELLO_addModule:hover {
+  cursor: pointer;
+}
+
+.MELLO_storeModule {
+  border-style: solid;
+  border-color: #233;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 2%;
+  height: 10%;
+  min-width: 300px;
+  max-width: 26%;
+  width: auto;
+  margin-bottom: 1%;
+  margin-right: 1.5%;
+  margin-left: 1.5%;
+  float: left;
+}
+
+.MELLO_storeModule:hover,
+.MELLO_storePossessModule:hover {
+  border-color: #35b2e8;
+}
+
+.MELLO_storePossessModule {
+  border-style: solid;
+  border-color: #233;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: rgba(80, 200, 80, 0.3);
+  padding: 2%;
+  height: 10%;
+  min-width: 300px;
+  max-width: 26%;
+  width: auto;
+  margin-bottom: 1%;
+  margin-right: 1.5%;
+  margin-left: 1.5%;
+  float: left;
+}
+
+.MELLO_linkModule {
+  border: 1px solid #ccd;
+  border-top-width: 10px;
+  border-top-color: #35b2e8;
+  border-radius: 0px;
+  font-size: 50px;
+  font-variant: normal;
+  color: #667;
+  float: left;
+  margin: 1%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.MELLO_linkModule:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.MELLO_linkModules {
+  padding: 2%;
+  margin-bottom: 10%;
+}
+
+.MELLO_dashModule {
+  border-style: solid;
+  border-color: #233;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 2%;
+  height: 10%;
+  margin-bottom: 1%;
+  margin-right: 1.5%;
+  margin-left: 1.5%;
+}
+
+.MELLO_dashPossessModule {
+  border-style: solid;
+  border-color: #233;
+  border-width: 1px;
+  border-radius: 10px;
+  background-color: rgba(80, 200, 80, 0.3);
+  padding: 2%;
+  height: 10%;
+  margin-bottom: 1%;
+  margin-right: 1.5%;
+  margin-left: 1.5%;
+}
+
+.MELLO_dashModuleList {
+  display: none;
+  border: 1px solid #35b2e8;
+  border-radius: 3px;
+  padding: 5px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.MELLO_removeSubmit {
+  color: transparent !important;
+  background-color: #b26 !important;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 0%;
+  margin-left: 2%;
+}
+
+.MELLO_addSubmit {
+  width: 100%;
+  padding: 2%;
+}
+
+.MELLO_storeSubmit {
+  font-size: 50px;
+  margin: 0%;
+  border: none;
+}

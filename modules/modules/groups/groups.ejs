@@ -1,0 +1,30 @@
+<% var user=user; var designFolder=theme; var title="Groups"%>
+<%- include ../../../views/parts/header %>
+<%- include ../../../views/parts/importDesign %>
+<link rel="stylesheet"  href="/modulesCSS/groups.css">
+<a href="<%= paths.Modules.Modules%>/groups/yourgroups">back</a>
+<br>
+<h2>You cannot resign from a group yet!</h2>
+<div class="GROUPS_leftside">
+    <form action="<%= paths.Modules.Modules%>/groups/join" method="post">
+        <h1>join a group!</h1>
+        <h2><% if(error) {%><%=typeof error.join != 'undefined' ? error.join : ""%><% }else{ %>""<%}%></h2>
+        <label>Name of Your group</label>
+        <input class="GROUPS_groupinput" placeholder="group-name" name="groupname" type="text"><br>
+        <label>Password of Your group</label>
+        <input class="GROUPS_groupinput" placeholder="group-password" name="grouppassword" type="password"><br>
+        <input class="GROUPS_grouplink" value="join group" name="join" type="submit">
+    </form>
+</div>
+<div class="GROUPS_rightside">
+    <form action="<%= paths.Modules.Modules%>/groups/create" method="post">
+        <h1>create a group!</h1>
+        <h2><% if(error) {%><%=typeof error.create != 'undefined' ? error.create : ""%><% }else{ %>""<%}%></h2>
+        <label>Name of Your group</label>
+        <input class="GROUPS_groupinput" placeholder="group-name" name="groupname" type="text"><br>
+        <label>Password of Your group</label>
+        <input class="GROUPS_groupinput" placeholder="group-password" name="grouppassword" type="password"><br>
+        <input class="GROUPS_grouplink" value="create group" name="create" type="submit">
+    </form>
+</div>
+<%- include ../../../views/parts/footer %>
